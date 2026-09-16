@@ -104,12 +104,6 @@ time, etc. Comment on similarities and differences you observe.)*
 Each portfolio invests 40% in the first fund listed and 60% in the
 second fund listed.
 
-*(TODO - the three pairs below are placeholders so the code runs end to
-end. Swap in the two funds you actually want for each portfolio, then
-re-run this chunk and copy the results into the Word document. Update
-the fund names in each `portfolio()` call and give each portfolio a
-short label that matches what you write in the Word doc.)*
-
 ```{r portfolio-function}
 portfolio <- function(x, y, w1 = 0.4, w2 = 0.6) {
   rho <- cor(x, y)
@@ -127,18 +121,18 @@ portfolio <- function(x, y, w1 = 0.4, w2 = 0.6) {
 ```
 
 ```{r portfolio-1}
-# Portfolio 1: Consumer_Staples (40%) / Utilities (60%)
-portfolio(df$Consumer_Staples, df$Utilities)
+# Portfolio 1: Health_Care (40%) / Information_Technology (60%)
+portfolio(df$Health_Care, df$Information_Technology)
 ```
 
 ```{r portfolio-2}
-# Portfolio 2: Energy (40%) / Information_Technology (60%)
-portfolio(df$Energy, df$Information_Technology)
+# Portfolio 2: Energy (40%) / Utilities (60%)
+portfolio(df$Energy, df$Utilities)
 ```
 
 ```{r portfolio-3}
-# Portfolio 3: Financials (40%) / Health_Care (60%)
-portfolio(df$Financials, df$Health_Care)
+# Portfolio 3: Consumer_Staples (40%) / Financials (60%)
+portfolio(df$Consumer_Staples, df$Financials)
 ```
 
 Copy each portfolio's correlation coefficient, expected return, variance,
