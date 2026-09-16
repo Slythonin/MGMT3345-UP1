@@ -1,0 +1,155 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+**MGMT 3345 Unit 1 Project**
+
+```{r setup, include=FALSE}
+# Packages needed for this project.
+# install.packages(c("readxl")) # uncomment/run once if not already installed
+library(readxl)
+```
+
+**STEP 1**
+#Complete this step in Excel.
+
+Real returns were calculated in Excel using the CPI-deflation method:
+
+    Real Return (%) = ( (P_t / P_t-1) / (CPI_t / CPI_t-1) - 1 ) * 100
+
+Per the project instructions, the CPI for October 2025 was set to the
+Treasury Department's contingency index of 325.604 (BLS did not release an
+official October 2025 CPI due to the government shutdown). See the
+"Source Data" tab of `Fidelity_Real_Returns.xlsx` for the priced/CPI inputs
+and the "Fidelity" tab for the resulting 58 real-return observations
+(Feb 2021 - Nov 2025).
+
+Import the completed real returns file for use in the remaining steps.
+
+```{r import-data}
+# Update this path if your file lives somewhere else on your machine.
+df <- read_excel("data/Fidelity_Real_Returns.xlsx", sheet = "Fidelity")
+
+# Row 1 (Jan 2021) has no prior month price, so it has no real return.
+# Drop it, leaving the 58 monthly real-return observations (Feb 2021-Nov 2025).
+df <- df[-1, ]
+
+str(df)
+```
+
+**STEP 2**
+#Descriptive statistics
+
+```{r descriptive-stats}
+funds <- c("Consumer_Staples", "Energy", "Financials",
+           "Health_Care", "Information_Technology", "Utilities")
+
+fund_mean <- sapply(df[funds], mean)
+fund_sd   <- sapply(df[funds], sd)
+
+descriptive_stats <- data.frame(
+  Fund               = funds,
+  `Monthly Return (Mean)` = round(fund_mean, 4),
+  `Standard Deviation`    = round(fund_sd, 4),
+  check.names = FALSE
+)
+
+descriptive_stats
+```
+
+Copy these mean and standard deviation values (rounded to 4 decimal
+places) into the Step 2a table in the Word document.
+
+**STEP 3**
+#Graphs
+
+```{r line-graphs}
+plot(df$Consumer_Staples ~ df$Date, main = "Consumer Staples: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "darkgreen", type = "l",
+     ylim = c(-25, 25))
+
+plot(df$Energy ~ df$Date, main = "Energy: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "darkorange", type = "l",
+     ylim = c(-25, 25))
+
+plot(df$Financials ~ df$Date, main = "Financials: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "steelblue", type = "l",
+     ylim = c(-25, 25))
+
+plot(df$Health_Care ~ df$Date, main = "Health Care: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "purple", type = "l",
+     ylim = c(-25, 25))
+
+plot(df$Information_Technology ~ df$Date, main = "Information Technology: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "red", type = "l",
+     ylim = c(-25, 25))
+
+plot(df$Utilities ~ df$Date, main = "Utilities: Monthly Real Return",
+     xlab = "Date", ylab = "Real Return (%)", col = "black", type = "l",
+     ylim = c(-25, 25))
+```
+
+**Step 3b. What can you say about the returns for each company?**
+
+*(TODO - write your own response here, in complete sentences. Look at
+the six graphs above and the mean/standard deviation table from Step 2:
+which funds swing the most from month to month, which stay flat, do any
+funds move together or in opposite directions at the same points in
+time, etc. Comment on similarities and differences you observe.)*
+
+**STEP 4**
+#Portfolios
+
+Each portfolio invests 40% in the first fund listed and 60% in the
+second fund listed.
+
+*(TODO - the three pairs below are placeholders so the code runs end to
+end. Swap in the two funds you actually want for each portfolio, then
+re-run this chunk and copy the results into the Word document. Update
+the fund names in each `portfolio()` call and give each portfolio a
+short label that matches what you write in the Word doc.)*
+
+```{r portfolio-function}
+portfolio <- function(x, y, w1 = 0.4, w2 = 0.6) {
+  rho <- cor(x, y)
+  exp_return <- w1 * mean(x) + w2 * mean(y)
+  variance <- (w1^2) * var(x) + (w2^2) * var(y) + 2 * w1 * w2 * cov(x, y)
+  std_dev <- sqrt(variance)
+
+  round(c(
+    Correlation      = rho,
+    `Expected Return` = exp_return,
+    Variance         = variance,
+    `Standard Deviation` = std_dev
+  ), 4)
+}
+```
+
+```{r portfolio-1}
+# Portfolio 1: Consumer_Staples (40%) / Utilities (60%)
+portfolio(df$Consumer_Staples, df$Utilities)
+```
+
+```{r portfolio-2}
+# Portfolio 2: Energy (40%) / Information_Technology (60%)
+portfolio(df$Energy, df$Information_Technology)
+```
+
+```{r portfolio-3}
+# Portfolio 3: Financials (40%) / Health_Care (60%)
+portfolio(df$Financials, df$Health_Care)
+```
+
+Copy each portfolio's correlation coefficient, expected return, variance,
+and standard deviation (rounded to 4 decimal places) into the Step 4
+tables in the Word document, and state which two funds you chose for
+each one.
+
+**STEP 5**
+#Analysis (complete in the Word document)
+
+*(TODO - Steps 5a and 5b are written analysis and personal investment
+judgment calls based on the Step 4 numbers above - not something to fill
+in here. Use the expected return / standard deviation values you copied
+into the Word document to support your recommendations.)*
