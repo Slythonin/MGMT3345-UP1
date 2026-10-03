@@ -1,5 +1,6 @@
 ---
 title: "MGMT 3345 Unit 2 Project"
+author: "Brian Knowlton"
 output: html_notebook
 ---
 
