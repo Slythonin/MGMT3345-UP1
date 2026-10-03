@@ -1,0 +1,486 @@
+---
+title: "MGMT 3345 Unit 2 Project"
+output: html_notebook
+---
+
+Run the following R Chunk to ensure you have enough decimal places for rounding and that values are not in scientific notation.
+```{r}
+options(digits=10)
+options(scipen=999)
+```
+
+Load the packages and the BIL data set (1st worksheet of BIL.xlsx).
+```{r}
+# install.packages(c("readxl", "epiDisplay")) # run once if not already installed
+library(readxl)
+library(epiDisplay)
+BIL <- read_excel("data/BIL.xlsx", sheet = "BIL")
+dim(BIL)
+```
+
+
+
+**Descriptive Statistics**
+Load epiDisplay package for the tab1 function.
+```{r}
+tab1(BIL$GenderCategorical, graph = FALSE)
+tab1(BIL$RaceCategorical, graph = FALSE)
+tab1(BIL$EthnicityCategorical, graph = FALSE)
+tab1(BIL$Educ, graph = FALSE)  # 1 = less than HS ... 6 = doctorate (keeps the levels in order)
+tab1(BIL$Marital, graph = FALSE)  # 1 = married/cohabitating, 2 = single, 8 = prefer not to say
+tab1(BIL$Utah, graph = FALSE)
+```
+
+
+
+Average salary (Income_1, in $1000's)
+```{r}
+mean(BIL$Income_1, na.rm=TRUE)
+sd(BIL$Income_1, na.rm=TRUE)
+```
+
+
+
+Female/Male (Gender)
+**Utah/NotUtah (Utah)**  <- my comparison group (last name F through P)
+White/nonWhite (White)
+
+Note: R orders the groups alphabetically, so in every t.test and var.test below group 1 = NotUtah and group 2 = Utah.
+t = (mean NotUtah - mean Utah) / SE and F = var(NotUtah) / var(Utah).
+
+
+**Differences Not Utah/Utah Intrinsic Rewards (Utah)**
+
+Interesting Job (JobCharacteristics_4)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_4, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_4, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_4, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_4~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_4, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_4~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Job autonomy (JobCharacteristics_5)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_5, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_5, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_5, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_5~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_5, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_5~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Help Others (JobCharacteristics_6)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_6, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_6, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_6, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_6~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_6, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_6~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Job useful to society (JobCharacteristics_7)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_7, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_7, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_7, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_7~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_7, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_7~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Job satisfaction (JobSat)
+```{r}
+#mean of whole sample
+mean(BIL$JobSat, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobSat, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobSat, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobSat~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobSat, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobSat~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+
+**Differences Not Utah/Utah Extrinsic Rewards (Utah)**
+
+Income in $1000's (Income_1)
+```{r}
+#mean of whole sample
+mean(BIL$Income_1, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Income_1, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Income_1, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Income_1~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Income_1, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Income_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Perception of Income (JobCharacteristics_2)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_2, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_2, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_2, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_2~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_2, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_2~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Job security (JobCharacteristics_1)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_1, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_1, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_1, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_1~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_1, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Promotional opportunities (JobCharacteristics_3)
+```{r}
+#mean of whole sample
+mean(BIL$JobCharacteristics_3, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$JobCharacteristics_3, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_3, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$JobCharacteristics_3~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$JobCharacteristics_3, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$JobCharacteristics_3~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+
+**Differences Not Utah/Utah Work Quality (Utah)**
+
+Job engagement (Eng_1)
+```{r}
+#mean of whole sample
+mean(BIL$Eng_1, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Eng_1, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Eng_1, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Eng_1~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Eng_1, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Eng_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Meaningful career (MW_PM_1)
+```{r}
+#mean of whole sample
+mean(BIL$MW_PM_1, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$MW_PM_1, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$MW_PM_1, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$MW_PM_1~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$MW_PM_1, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$MW_PM_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Organizational commitment (Comm_1)
+```{r}
+#mean of whole sample
+mean(BIL$Comm_1, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Comm_1, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Comm_1, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Comm_1~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Comm_1, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Comm_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Student's Choice 1: Good healthcare (Healthcare)
+```{r}
+#mean of whole sample
+mean(BIL$Healthcare, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Healthcare, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Healthcare, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Healthcare~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Healthcare, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Healthcare~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Student's Choice 2: Respected at work (Respect)
+```{r}
+#mean of whole sample
+mean(BIL$Respect, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Respect, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Respect, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Respect~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Respect, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Respect~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Student's Choice 3: Empathetic leader (EmpatheticLeader)
+```{r}
+#mean of whole sample
+mean(BIL$EmpatheticLeader, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$EmpatheticLeader, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$EmpatheticLeader, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$EmpatheticLeader~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$EmpatheticLeader, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$EmpatheticLeader~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+Student's Choice 4: Turnover intentions (Turnover)
+```{r}
+#mean of whole sample
+mean(BIL$Turnover, na.rm=TRUE)
+
+#standard deviation of whole sample
+sd(BIL$Turnover, na.rm=TRUE)
+
+#mean for NotUtah and Utah subsets
+tapply(BIL$Turnover, BIL$Utah, mean, na.rm=TRUE)
+
+#differences of means test
+t.test(BIL$Turnover~BIL$Utah, mu = 0, alternative = "two.sided")
+
+#standard deviation for NotUtah and Utah subsets
+tapply(BIL$Turnover, BIL$Utah, sd, na.rm=TRUE)
+
+#differences of variation test
+var.test(BIL$Turnover~BIL$Utah, ratio = 1, alternative = "two.sided")
+```
+
+
+
+
+**Proportions for Whole Sample**
+```{r}
+tab1(BIL$HighIncome, graph = FALSE)
+tab1(BIL$CollegeDegree, graph = FALSE)
+tab1(BIL$SAL, graph = FALSE)
+tab1(BIL$OrgYearsMoreThanTen, graph = FALSE)
+tab1(BIL$Married, graph = FALSE)
+```
+
+
+
+**Subsetting Female Respondents**
+```{r}
+#Create a subset of only female respondents
+Female <- subset(BIL, Gender == 1)
+table(Female$Utah)
+```
+
+
+
+**Proportions Female in Utah and Female not in Utah**
+(prop.test is run as Female Utah first, Female Not Utah second, so a positive z means the Utah share is higher.
+z is the square root of X-squared, given the sign of the difference.)
+
+Income above $100,000 (HighIncome)
+```{r}
+FemaleUtahHighIncome <- table(Female$Utah, Female$HighIncome)
+FemaleUtahHighIncome <- addmargins(FemaleUtahHighIncome)
+FemaleUtahHighIncome
+FemaleUtahHighIncome.test <- prop.test(x = c(FemaleUtahHighIncome["Utah","1"], FemaleUtahHighIncome["NotUtah","1"]),
+                    n = c(FemaleUtahHighIncome["Utah","Sum"], FemaleUtahHighIncome["NotUtah","Sum"]),
+                    correct = F, alternative = "two.sided")
+FemaleUtahHighIncome.test
+#z statistic
+sign(FemaleUtahHighIncome.test$estimate[1] - FemaleUtahHighIncome.test$estimate[2]) * sqrt(FemaleUtahHighIncome.test$statistic)
+```
+
+College Degree (CollegeDegree)
+```{r}
+FemaleUtahCollegeDegree <- table(Female$Utah, Female$CollegeDegree)
+FemaleUtahCollegeDegree <- addmargins(FemaleUtahCollegeDegree)
+FemaleUtahCollegeDegree
+FemaleUtahCollegeDegree.test <- prop.test(x = c(FemaleUtahCollegeDegree["Utah","1"], FemaleUtahCollegeDegree["NotUtah","1"]),
+                    n = c(FemaleUtahCollegeDegree["Utah","Sum"], FemaleUtahCollegeDegree["NotUtah","Sum"]),
+                    correct = F, alternative = "two.sided")
+FemaleUtahCollegeDegree.test
+#z statistic
+sign(FemaleUtahCollegeDegree.test$estimate[1] - FemaleUtahCollegeDegree.test$estimate[2]) * sqrt(FemaleUtahCollegeDegree.test$statistic)
+```
+
+In Sales or Business Development (SAL, 1 Yes, 2 No) (SAL)
+```{r}
+FemaleUtahSAL <- table(Female$Utah, Female$SAL)
+FemaleUtahSAL <- addmargins(FemaleUtahSAL)
+FemaleUtahSAL
+FemaleUtahSAL.test <- prop.test(x = c(FemaleUtahSAL["Utah","1"], FemaleUtahSAL["NotUtah","1"]),
+                    n = c(FemaleUtahSAL["Utah","Sum"], FemaleUtahSAL["NotUtah","Sum"]),
+                    correct = F, alternative = "two.sided")
+FemaleUtahSAL.test
+#z statistic
+sign(FemaleUtahSAL.test$estimate[1] - FemaleUtahSAL.test$estimate[2]) * sqrt(FemaleUtahSAL.test$statistic)
+```
+
+More than 10 years in organization (OrgYearsMoreThanTen)
+```{r}
+FemaleUtahOrgYearsMoreThanTen <- table(Female$Utah, Female$OrgYearsMoreThanTen)
+FemaleUtahOrgYearsMoreThanTen <- addmargins(FemaleUtahOrgYearsMoreThanTen)
+FemaleUtahOrgYearsMoreThanTen
+FemaleUtahOrgYearsMoreThanTen.test <- prop.test(x = c(FemaleUtahOrgYearsMoreThanTen["Utah","1"], FemaleUtahOrgYearsMoreThanTen["NotUtah","1"]),
+                    n = c(FemaleUtahOrgYearsMoreThanTen["Utah","Sum"], FemaleUtahOrgYearsMoreThanTen["NotUtah","Sum"]),
+                    correct = F, alternative = "two.sided")
+FemaleUtahOrgYearsMoreThanTen.test
+#z statistic
+sign(FemaleUtahOrgYearsMoreThanTen.test$estimate[1] - FemaleUtahOrgYearsMoreThanTen.test$estimate[2]) * sqrt(FemaleUtahOrgYearsMoreThanTen.test$statistic)
+```
+
+Student Choice: Married or cohabitating (Married)
+```{r}
+FemaleUtahMarried <- table(Female$Utah, Female$Married)
+FemaleUtahMarried <- addmargins(FemaleUtahMarried)
+FemaleUtahMarried
+FemaleUtahMarried.test <- prop.test(x = c(FemaleUtahMarried["Utah","1"], FemaleUtahMarried["NotUtah","1"]),
+                    n = c(FemaleUtahMarried["Utah","Sum"], FemaleUtahMarried["NotUtah","Sum"]),
+                    correct = F, alternative = "two.sided")
+FemaleUtahMarried.test
+#z statistic
+sign(FemaleUtahMarried.test$estimate[1] - FemaleUtahMarried.test$estimate[2]) * sqrt(FemaleUtahMarried.test$statistic)
+```
