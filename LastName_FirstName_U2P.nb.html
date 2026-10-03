@@ -1914,7 +1914,10 @@ Utah          211    37.5        100.0
 comparison group (last name F through P) White/nonWhite (White)</p>
 <p>Note: R orders the groups alphabetically, so in every t.test and
 var.test below group 1 = NotUtah and group 2 = Utah. t = (mean NotUtah -
-mean Utah) / SE and F = var(NotUtah) / var(Utah).</p>
+mean Utah) / SE and F = var(NotUtah) / var(Utah). All tests are
+one-tailed. The alternative is set in the direction of the observed
+difference: “greater” tests NotUtah &gt; Utah (or var NotUtah &gt; var
+Utah) and “less” tests NotUtah &lt; Utah.</p>
 <p><strong>Differences Not Utah/Utah Intrinsic Rewards
 (Utah)</strong></p>
 <p>Interesting Job (JobCharacteristics_4)</p>
@@ -1942,19 +1945,19 @@ tapply(BIL$JobCharacteristics_4, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.866477273 3.924170616 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNH5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_4~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzR+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_4~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzQgYnkgQklMJFV0YWhcbnQgPSAtMC42ODUwMTQ0NiwgZGYgPSA0NzQuMDc4MywgcC12YWx1ZSA9IDAuNDkzNjY5NlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjIyMzE4ODA5MjkgIDAuMTA3ODAxNDA2Mlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy44NjY0NzcyNzMgICAgICAgICAgIDMuOTI0MTcwNjE2IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzQgYnkgQklMJFV0YWhcbnQgPSAtMC42ODUwMTQ0NiwgZGYgPSA0NzQuMDc4MywgcC12YWx1ZSA9IDAuMjQ2ODM0OFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBsZXNzIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuICAgICAgICAgIC1JbmYgMC4wODExMTA4ODkyNlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy44NjY0NzcyNzMgICAgICAgICAgIDMuOTI0MTcwNjE2IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_4 by BIL$Utah
-t = -0.68501446, df = 474.0783, p-value = 0.4936696
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -0.68501446, df = 474.0783, p-value = 0.2468348
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.2231880929  0.1078014062
+          -Inf 0.08111088926
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.866477273           3.924170616 </code></pre>
@@ -1967,19 +1970,19 @@ tapply(BIL$JobCharacteristics_4, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>     NotUtah         Utah 
 1.0221540740 0.9329592699 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNH5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_4~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzR+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_4~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNCBieSBCSUwkVXRhaFxuRiA9IDEuMjAwMzQ4NSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMTQ1MzIwMVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjkzODQ4MzQzOTIgMS41MjM4NDUwMTk1XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMjAwMzQ4NTE1IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNCBieSBCSUwkVXRhaFxuRiA9IDEuMjAwMzQ4NSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMDcyNjYwMDRcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgcmF0aW8gb2YgdmFyaWFuY2VzIGlzIGdyZWF0ZXIgdGhhbiAxXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC45NzY1NTgwOTc1ICAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjIwMDM0ODUxNSBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_4 by BIL$Utah
-F = 1.2003485, num df = 351, denom df = 210, p-value = 0.1453201
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.2003485, num df = 351, denom df = 210, p-value = 0.07266004
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.9384834392 1.5238450195
+ 0.9765580975          Inf
 sample estimates:
 ratio of variances 
        1.200348515 </code></pre>
@@ -2011,19 +2014,19 @@ tapply(BIL$JobCharacteristics_5, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.860795455 4.151658768 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_5~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzV+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_5~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzUgYnkgQklMJFV0YWhcbnQgPSAtMy40MzQyOTE5LCBkZiA9IDUxMC44OTUyMSwgcC12YWx1ZSA9IDAuMDAwNjQyNDA2NVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjQ1NzI1NDMzNzQgLTAuMTI0NDcyMjg5MVxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy44NjA3OTU0NTUgICAgICAgICAgIDQuMTUxNjU4NzY4IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzUgYnkgQklMJFV0YWhcbnQgPSAtMy40MzQyOTE5LCBkZiA9IDUxMC44OTUyMSwgcC12YWx1ZSA9IDAuMDAwMzIxMjAzMlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBsZXNzIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuICAgICAgICAgIC1JbmYgLTAuMTUxMzAxMzA2Nlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy44NjA3OTU0NTUgICAgICAgICAgIDQuMTUxNjU4NzY4IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_5 by BIL$Utah
-t = -3.4342919, df = 510.89521, p-value = 0.0006424065
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -3.4342919, df = 510.89521, p-value = 0.0003212032
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.4572543374 -0.1244722891
+          -Inf -0.1513013066
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.860795455           4.151658768 </code></pre>
@@ -2036,19 +2039,19 @@ tapply(BIL$JobCharacteristics_5, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>     NotUtah         Utah 
 1.0941165858 0.8921534126 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_5~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzV+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_5~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSBieSBCSUwkVXRhaFxuRiA9IDEuNTA0MDAxLCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMDEyNDE3ODVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgcmF0aW8gb2YgdmFyaWFuY2VzIGlzIG5vdCBlcXVhbCB0byAxXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMS4xNzU4OTE4MzUgMS45MDkzMzI0ODVcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS41MDQwMDA5ODYgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSBieSBCSUwkVXRhaFxuRiA9IDEuNTA0MDAxLCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMDA2MjA4OTI1XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBncmVhdGVyIHRoYW4gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuMjIzNTk4MjUgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjUwNDAwMDk4NiBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_5 by BIL$Utah
-F = 1.504001, num df = 351, denom df = 210, p-value = 0.001241785
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.504001, num df = 351, denom df = 210, p-value = 0.0006208925
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.175891835 1.909332485
+ 1.22359825        Inf
 sample estimates:
 ratio of variances 
        1.504000986 </code></pre>
@@ -2080,19 +2083,19 @@ tapply(BIL$JobCharacteristics_6, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 4.034090909 4.146919431 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_6~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzZ+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_6~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzYgYnkgQklMJFV0YWhcbnQgPSAtMS40MDMxNjk4LCBkZiA9IDQ2NC40ODc4OSwgcC12YWx1ZSA9IDAuMTYxMjM0M1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjI3MDg0MDQ0NzEgIDAuMDQ1MTgzNDAyN1xuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNC4wMzQwOTA5MDkgICAgICAgICAgIDQuMTQ2OTE5NDMxIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzYgYnkgQklMJFV0YWhcbnQgPSAtMS40MDMxNjk4LCBkZiA9IDQ2NC40ODc4OSwgcC12YWx1ZSA9IDAuMDgwNjE3MTVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgIC1JbmYgMC4wMTk2OTgwNDg0XG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICA0LjAzNDA5MDkwOSAgICAgICAgICAgNC4xNDY5MTk0MzEgXG4ifQ== -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_6 by BIL$Utah
-t = -1.4031698, df = 464.48789, p-value = 0.1612343
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -1.4031698, df = 464.48789, p-value = 0.08061715
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.2708404471  0.0451834027
+         -Inf 0.0196980484
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           4.034090909           4.146919431 </code></pre>
@@ -2105,19 +2108,19 @@ tapply(BIL$JobCharacteristics_6, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>     NotUtah         Utah 
 0.9601621852 0.9009135512 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_6~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzZ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_6~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiBieSBCSUwkVXRhaFxuRiA9IDEuMTM1ODU1MiwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMzA5OTA5MlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjg4ODA1OTc5ODcgMS40NDE5NzA1NzE1XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTM1ODU1MTY0IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiBieSBCSUwkVXRhaFxuRiA9IDEuMTM1ODU1MiwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMTU0OTU0NlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjkyNDA4ODc0OTIgICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTM1ODU1MTY0IFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_6 by BIL$Utah
-F = 1.1358552, num df = 351, denom df = 210, p-value = 0.3099092
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1358552, num df = 351, denom df = 210, p-value = 0.1549546
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8880597987 1.4419705715
+ 0.9240887492          Inf
 sample estimates:
 ratio of variances 
        1.135855164 </code></pre>
@@ -2149,19 +2152,19 @@ tapply(BIL$JobCharacteristics_7, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.934659091 4.080568720 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfN35CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_7~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzd+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_7~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcgYnkgQklMJFV0YWhcbnQgPSAtMS42OTgyNjg5LCBkZiA9IDQzMC40MDQ2MiwgcC12YWx1ZSA9IDAuMDkwMTc5NzdcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbm90IGVxdWFsIHRvIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMC4zMTQ3NzgwOTU2MCAgMC4wMjI5NTg4MzY2Nlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy45MzQ2NTkwOTEgICAgICAgICAgIDQuMDgwNTY4NzIwIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcgYnkgQklMJFV0YWhcbnQgPSAtMS42OTgyNjg5LCBkZiA9IDQzMC40MDQ2MiwgcC12YWx1ZSA9IDAuMDQ1MDg5ODhcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgICAgIC1JbmYgLTAuMDA0Mjg0NDI4OTAyXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICAzLjkzNDY1OTA5MSAgICAgICAgICAgNC4wODA1Njg3MjAgXG4ifQ== -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_7 by BIL$Utah
-t = -1.6982689, df = 430.40462, p-value = 0.09017977
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -1.6982689, df = 430.40462, p-value = 0.04508988
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.31477809560  0.02295883666
+            -Inf -0.004284428902
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.934659091           4.080568720 </code></pre>
@@ -2174,19 +2177,19 @@ tapply(BIL$JobCharacteristics_7, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>     NotUtah         Utah 
 0.9659401324 0.9991194498 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfN35CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_7~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzd+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_7~BIL$Utah, ratio = 1, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNyBieSBCSUwkVXRhaFxuRiA9IDAuOTM0Njg1NjksIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjU3NjI5MDVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgcmF0aW8gb2YgdmFyaWFuY2VzIGlzIG5vdCBlcXVhbCB0byAxXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC43MzA3NzY5NjE4IDEuMTg2NTg1NDkyMlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgIDAuOTM0Njg1Njg5OSBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNyBieSBCSUwkVXRhaFxuRiA9IDAuOTM0Njg1NjksIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjI4ODE0NTJcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgcmF0aW8gb2YgdmFyaWFuY2VzIGlzIGxlc3MgdGhhbiAxXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC4wMDAwMDAwMDAgMS4xNDE5ODQ5NzJcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAwLjkzNDY4NTY4OTkgXG4ifQ== -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_7 by BIL$Utah
-F = 0.93468569, num df = 351, denom df = 210, p-value = 0.5762905
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 0.93468569, num df = 351, denom df = 210, p-value = 0.2881452
+alternative hypothesis: true ratio of variances is less than 1
 95 percent confidence interval:
- 0.7307769618 1.1865854922
+ 0.000000000 1.141984972
 sample estimates:
 ratio of variances 
       0.9346856899 </code></pre>
@@ -2218,19 +2221,19 @@ tapply(BIL$JobSat, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 7.255140693 7.761227714 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JTYXR+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKSJdfQ== -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobSat~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iU2F0fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJsZXNzXCIpIl19 -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobSat~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iU2F0IGJ5IEJJTCRVdGFoXG50ID0gLTIuNjA1MzM0OCwgZGYgPSA0NzIuNzExNDksIHAtdmFsdWUgPSAwLjAwOTQ2NzgxNFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjg4Nzc4Nzg3NDYgLTAuMTI0Mzg2MTY3OFxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNy4yNTUxNDA2OTMgICAgICAgICAgIDcuNzYxMjI3NzE0IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iU2F0IGJ5IEJJTCRVdGFoXG50ID0gLTIuNjA1MzM0OCwgZGYgPSA0NzIuNzExNDksIHAtdmFsdWUgPSAwLjAwNDczMzkwN1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBsZXNzIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuICAgICAgICAgIC1JbmYgLTAuMTg1OTQ2MzM5Nlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNy4yNTUxNDA2OTMgICAgICAgICAgIDcuNzYxMjI3NzE0IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobSat by BIL$Utah
-t = -2.6053348, df = 472.71149, p-value = 0.009467814
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -2.6053348, df = 472.71149, p-value = 0.004733907
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.8877878746 -0.1243861678
+          -Inf -0.1859463396
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           7.255140693           7.761227714 </code></pre>
@@ -2243,19 +2246,19 @@ tapply(BIL$JobSat, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 2.352074086 2.155340202 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JTYXR+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKSJdfQ== -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobSat~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iU2F0fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJncmVhdGVyXCIpIl19 -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobSat~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JTYXQgYnkgQklMJFV0YWhcbkYgPSAxLjE5MDg4NjQsIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjE2MzU0NzVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgcmF0aW8gb2YgdmFyaWFuY2VzIGlzIG5vdCBlcXVhbCB0byAxXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC45MzEwODU1NTQ4IDEuNTExODMyODQyM1xuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjE5MDg4NjM5OCBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JTYXQgYnkgQklMJFV0YWhcbkYgPSAxLjE5MDg4NjQsIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjA4MTc3Mzc2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBncmVhdGVyIHRoYW4gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuOTY4ODYwMDc3OCAgICAgICAgICBJbmZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4xOTA4ODYzOTggXG4ifQ== -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobSat by BIL$Utah
-F = 1.1908864, num df = 351, denom df = 210, p-value = 0.1635475
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1908864, num df = 351, denom df = 210, p-value = 0.08177376
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.9310855548 1.5118328423
+ 0.9688600778          Inf
 sample estimates:
 ratio of variances 
        1.190886398 </code></pre>
@@ -2289,19 +2292,19 @@ tapply(BIL$Income_1, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 151.7017045 106.8672986 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRJbmNvbWVfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Income_1~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSW5jb21lXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Income_1~BIL$Utah, mu = 0, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSW5jb21lXzEgYnkgQklMJFV0YWhcbnQgPSA0LjI1MDI5NTEsIGRmID0gNTM4LjE3ODEsIHAtdmFsdWUgPSAwLjAwMDAyNTE2NTU3XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIG5vdCBlcXVhbCB0byAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMjQuMTEzMDQ3ODEgNjUuNTU1NzY0MTNcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDE1MS43MDE3MDQ1ICAgICAgICAgICAxMDYuODY3Mjk4NiBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSW5jb21lXzEgYnkgQklMJFV0YWhcbnQgPSA0LjI1MDI5NTEsIGRmID0gNTM4LjE3ODEsIHAtdmFsdWUgPSAwLjAwMDAxMjU4Mjc4XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIGdyZWF0ZXIgdGhhbiAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMjcuNDUzNjg0MDkgICAgICAgICBJbmZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDE1MS43MDE3MDQ1ICAgICAgICAgICAxMDYuODY3Mjk4NiBcbiJ9 -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Income_1 by BIL$Utah
-t = 4.2502951, df = 538.1781, p-value = 0.00002516557
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = 4.2502951, df = 538.1781, p-value = 0.00001258278
+alternative hypothesis: true difference in means between group NotUtah and group Utah is greater than 0
 95 percent confidence interval:
- 24.11304781 65.55576413
+ 27.45368409         Inf
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           151.7017045           106.8672986 </code></pre>
@@ -2314,19 +2317,19 @@ tapply(BIL$Income_1, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 143.5359697 105.4916445 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRJbmNvbWVfMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Income_1~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSW5jb21lXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Income_1~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRJbmNvbWVfMSBieSBCSUwkVXRhaFxuRiA9IDEuODUxMzM2NSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMDAwMDAxNDQzMjg1XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuNDQ3NDUzNTA5IDIuMzUwMjc1Njk4XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuODUxMzM2NTI2IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRJbmNvbWVfMSBieSBCSUwkVXRhaFxuRiA9IDEuODUxMzM2NSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMDAwMDAwNzIxNjQyM1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjUwNjE3NzI5MiAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjg1MTMzNjUyNiBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Income_1 by BIL$Utah
-F = 1.8513365, num df = 351, denom df = 210, p-value = 0.000001443285
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.8513365, num df = 351, denom df = 210, p-value = 0.0000007216423
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.447453509 2.350275698
+ 1.506177292         Inf
 sample estimates:
 ratio of variances 
        1.851336526 </code></pre>
@@ -2358,19 +2361,19 @@ tapply(BIL$JobCharacteristics_2, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.417613636 3.246445498 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_2~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzJ+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_2~BIL$Utah, mu = 0, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIgYnkgQklMJFV0YWhcbnQgPSAxLjY4NjYyNjIsIGRmID0gNDU1LjM5Njg1LCBwLXZhbHVlID0gMC4wOTIzNjAxMVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjAyODI2OTg3MjI2ICAwLjM3MDYwNjE0OTczXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICAzLjQxNzYxMzYzNiAgICAgICAgICAgMy4yNDY0NDU0OTggXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIgYnkgQklMJFV0YWhcbnQgPSAxLjY4NjYyNjIsIGRmID0gNDU1LjM5Njg1LCBwLXZhbHVlID0gMC4wNDYxODAwNVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBncmVhdGVyIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuMDAzODk5MDQzNTQyICAgICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICAzLjQxNzYxMzYzNiAgICAgICAgICAgMy4yNDY0NDU0OTggXG4ifQ== -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_2 by BIL$Utah
-t = 1.6866262, df = 455.39685, p-value = 0.09236011
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = 1.6866262, df = 455.39685, p-value = 0.04618005
+alternative hypothesis: true difference in means between group NotUtah and group Utah is greater than 0
 95 percent confidence interval:
- -0.02826987226  0.37060614973
+ 0.003899043542            Inf
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.417613636           3.246445498 </code></pre>
@@ -2383,19 +2386,19 @@ tapply(BIL$JobCharacteristics_2, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 1.193060174 1.148881100 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_2~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzJ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_2~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMiBieSBCSUwkVXRhaFxuRiA9IDEuMDc4Mzg2NywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuNTQ5MzIxNlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjg0MzEyODUyMjUgMS4zNjkwMTQyNDc5XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMDc4Mzg2NzExIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMiBieSBCSUwkVXRhaFxuRiA9IDEuMDc4Mzg2NywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMjc0NjYwOFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjg3NzMzNDU5MjYgICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMDc4Mzg2NzExIFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_2 by BIL$Utah
-F = 1.0783867, num df = 351, denom df = 210, p-value = 0.5493216
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.0783867, num df = 351, denom df = 210, p-value = 0.2746608
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8431285225 1.3690142479
+ 0.8773345926          Inf
 sample estimates:
 ratio of variances 
        1.078386711 </code></pre>
@@ -2427,19 +2430,19 @@ tapply(BIL$JobCharacteristics_1, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.894886364 3.962085308 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_1~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_1~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzEgYnkgQklMJFV0YWhcbnQgPSAtMC43NjUxMDQwOCwgZGYgPSA0NjMuNzYwNDIsIHAtdmFsdWUgPSAwLjQ0NDU5ODdcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbm90IGVxdWFsIHRvIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMC4yMzk3OTI2MzQ4ICAwLjEwNTM5NDc0NTlcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDMuODk0ODg2MzY0ICAgICAgICAgICAzLjk2MjA4NTMwOCBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzEgYnkgQklMJFV0YWhcbnQgPSAtMC43NjUxMDQwOCwgZGYgPSA0NjMuNzYwNDIsIHAtdmFsdWUgPSAwLjIyMjI5OTRcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgICAtSW5mIDAuMDc3NTU3Mzk1MTlcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDMuODk0ODg2MzY0ICAgICAgICAgICAzLjk2MjA4NTMwOCBcbiJ9 -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_1 by BIL$Utah
-t = -0.76510408, df = 463.76042, p-value = 0.4445987
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -0.76510408, df = 463.76042, p-value = 0.2222994
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.2397926348  0.1053947459
+          -Inf 0.07755739519
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.894886364           3.962085308 </code></pre>
@@ -2452,19 +2455,19 @@ tapply(BIL$JobCharacteristics_1, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>   NotUtah       Utah 
 1.04746444 0.98487776 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_1~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_1~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMSBieSBCSUwkVXRhaFxuRiA9IDEuMTMxMTMzNiwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMzI2MDY5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuODg0MzY4MzA0NiAxLjQzNTk3NjU3NjdcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4xMzExMzM2MzIgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMSBieSBCSUwkVXRhaFxuRiA9IDEuMTMxMTMzNiwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMTYzMDM0NVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjkyMDI0NzQ4OTcgICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTMxMTMzNjMyIFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_1 by BIL$Utah
-F = 1.1311336, num df = 351, denom df = 210, p-value = 0.326069
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1311336, num df = 351, denom df = 210, p-value = 0.1630345
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8843683046 1.4359765767
+ 0.9202474897          Inf
 sample estimates:
 ratio of variances 
        1.131133632 </code></pre>
@@ -2496,19 +2499,19 @@ tapply(BIL$JobCharacteristics_3, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.465909091 3.407582938 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfM35CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$JobCharacteristics_3~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzN+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_3~BIL$Utah, mu = 0, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMgYnkgQklMJFV0YWhcbnQgPSAwLjU3OTUyMjgyLCBkZiA9IDQ2MS4zNzY5MSwgcC12YWx1ZSA9IDAuNTYyNTE5M1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjEzOTQ1MzUxNDYgIDAuMjU2MTA1ODE5Nlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy40NjU5MDkwOTEgICAgICAgICAgIDMuNDA3NTgyOTM4IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMgYnkgQklMJFV0YWhcbnQgPSAwLjU3OTUyMjgyLCBkZiA9IDQ2MS4zNzY5MSwgcC12YWx1ZSA9IDAuMjgxMjU5N1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBncmVhdGVyIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjEwNzU1MzQzMjQgICAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgMy40NjU5MDkwOTEgICAgICAgICAgIDMuNDA3NTgyOTM4IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$JobCharacteristics_3 by BIL$Utah
-t = 0.57952282, df = 461.37691, p-value = 0.5625193
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = 0.57952282, df = 461.37691, p-value = 0.2812597
+alternative hypothesis: true difference in means between group NotUtah and group Utah is greater than 0
 95 percent confidence interval:
- -0.1394535146  0.2561058196
+ -0.1075534324           Inf
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.465909091           3.407582938 </code></pre>
@@ -2521,19 +2524,19 @@ tapply(BIL$JobCharacteristics_3, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 1.195422072 1.131681992 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfM35CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$JobCharacteristics_3~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzN+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_3~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMyBieSBCSUwkVXRhaFxuRiA9IDEuMTE1ODE4OSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMzgyNzU2M1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjg3MjM5NDYzMDggMS40MTY1MzQ1NDY4XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTE1ODE4OTQzIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMyBieSBCSUwkVXRhaFxuRiA9IDEuMTE1ODE4OSwgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMTkxMzc4MlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjkwNzc4ODAzOSAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjExNTgxODk0MyBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$JobCharacteristics_3 by BIL$Utah
-F = 1.1158189, num df = 351, denom df = 210, p-value = 0.3827563
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1158189, num df = 351, denom df = 210, p-value = 0.1913782
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8723946308 1.4165345468
+ 0.907788039         Inf
 sample estimates:
 ratio of variances 
        1.115818943 </code></pre>
@@ -2566,19 +2569,19 @@ tapply(BIL$Eng_1, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 7.863636364 8.018957346 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRFbmdfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Eng_1~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkRW5nXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImxlc3NcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Eng_1~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkRW5nXzEgYnkgQklMJFV0YWhcbnQgPSAtMC45MjE2MDE2OSwgZGYgPSA1MDIuMDAyODMsIHAtdmFsdWUgPSAwLjM1NzE3OTFcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbm90IGVxdWFsIHRvIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMC40ODY0MzkzNjQyICAwLjE3NTc5NzM5OTVcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDcuODYzNjM2MzY0ICAgICAgICAgICA4LjAxODk1NzM0NiBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkRW5nXzEgYnkgQklMJFV0YWhcbnQgPSAtMC45MjE2MDE2OSwgZGYgPSA1MDIuMDAyODMsIHAtdmFsdWUgPSAwLjE3ODU4OTVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgIC1JbmYgMC4xMjI0MDQ4NzAzXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICA3Ljg2MzYzNjM2NCAgICAgICAgICAgOC4wMTg5NTczNDYgXG4ifQ== -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Eng_1 by BIL$Utah
-t = -0.92160169, df = 502.00283, p-value = 0.3571791
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -0.92160169, df = 502.00283, p-value = 0.1785895
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.4864393642  0.1757973995
+         -Inf 0.1224048703
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           7.863636364           8.018957346 </code></pre>
@@ -2591,19 +2594,19 @@ tapply(BIL$Eng_1, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 2.144000139 1.799370486 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRFbmdfMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Eng_1~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkRW5nXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Eng_1~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRFbmdfMSBieSBCSUwkVXRhaFxuRiA9IDEuNDE5NzM4NywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMDA1NDMxMDc4XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuMTEwMDEyMDMzIDEuODAyMzYxMzgyXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgICAxLjQxOTczODc0IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRFbmdfMSBieSBCSUwkVXRhaFxuRiA9IDEuNDE5NzM4NywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMDAyNzE1NTM5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBncmVhdGVyIHRoYW4gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuMTU1MDQ1Njc3ICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgICAxLjQxOTczODc0IFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Eng_1 by BIL$Utah
-F = 1.4197387, num df = 351, denom df = 210, p-value = 0.005431078
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.4197387, num df = 351, denom df = 210, p-value = 0.002715539
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.110012033 1.802361382
+ 1.155045677         Inf
 sample estimates:
 ratio of variances 
         1.41973874 </code></pre>
@@ -2635,19 +2638,19 @@ tapply(BIL$MW_PM_1, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 3.840909091 4.014218009 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRNV19QTV8xfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$MW_PM_1~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkTVdfUE1fMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwibGVzc1wiKSJdfQ== -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$MW_PM_1~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkTVdfUE1fMSBieSBCSUwkVXRhaFxudCA9IC0xLjc5MTE5NjQsIGRmID0gNDg3Ljk0NDY2LCBwLXZhbHVlID0gMC4wNzM4ODE0NFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjM2MzQxODY2MzEyICAwLjAxNjgwMDgyNTk4XG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICAzLjg0MDkwOTA5MSAgICAgICAgICAgNC4wMTQyMTgwMDkgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkTVdfUE1fMSBieSBCSUwkVXRhaFxudCA9IC0xLjc5MTE5NjQsIGRmID0gNDg3Ljk0NDY2LCBwLXZhbHVlID0gMC4wMzY5NDA3MlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBsZXNzIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuICAgICAgICAgICAtSW5mIC0wLjAxMzg1NjgwMTMyXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICAzLjg0MDkwOTA5MSAgICAgICAgICAgNC4wMTQyMTgwMDkgXG4ifQ== -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$MW_PM_1 by BIL$Utah
-t = -1.7911964, df = 487.94466, p-value = 0.07388144
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -1.7911964, df = 487.94466, p-value = 0.03694072
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.36341866312  0.01680082598
+           -Inf -0.01385680132
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           3.840909091           4.014218009 </code></pre>
@@ -2660,19 +2663,19 @@ tapply(BIL$MW_PM_1, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 1.201958171 1.053242942 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRNV19QTV8xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$MW_PM_1~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkTVdfUE1fMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwiZ3JlYXRlclwiKSJdfQ== -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$MW_PM_1~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRNV19QTV8xIGJ5IEJJTCRVdGFoXG5GID0gMS4zMDIzMzE2LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMzU1MDM4MlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjAxODIxODE4MCAxLjY1MzMxMjgyMVxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjMwMjMzMTY0NCBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRNV19QTV8xIGJ5IEJJTCRVdGFoXG5GID0gMS4zMDIzMzE2LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMTc3NTE5MVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjA1OTUyNzcxICAgICAgICBJbmZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4zMDIzMzE2NDQgXG4ifQ== -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$MW_PM_1 by BIL$Utah
-F = 1.3023316, num df = 351, denom df = 210, p-value = 0.03550382
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.3023316, num df = 351, denom df = 210, p-value = 0.01775191
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.018218180 1.653312821
+ 1.05952771        Inf
 sample estimates:
 ratio of variances 
        1.302331644 </code></pre>
@@ -2704,19 +2707,19 @@ tapply(BIL$Comm_1, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 4.997159091 5.412322275 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRDb21tXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKSJdfQ== -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Comm_1~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkQ29tbV8xfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJsZXNzXCIpIl19 -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Comm_1~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkQ29tbV8xIGJ5IEJJTCRVdGFoXG50ID0gLTIuNzI3MTcxNSwgZGYgPSA0NzguMjMzNDUsIHAtdmFsdWUgPSAwLjAwNjYyMjgwMVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjcxNDI4OTc0NjMgLTAuMTE2MDM2NjIxN1xuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNC45OTcxNTkwOTEgICAgICAgICAgIDUuNDEyMzIyMjc1IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkQ29tbV8xIGJ5IEJJTCRVdGFoXG50ID0gLTIuNzI3MTcxNSwgZGYgPSA0NzguMjMzNDUsIHAtdmFsdWUgPSAwLjAwMzMxMTQwMVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSBkaWZmZXJlbmNlIGluIG1lYW5zIGJldHdlZW4gZ3JvdXAgTm90VXRhaCBhbmQgZ3JvdXAgVXRhaCBpcyBsZXNzIHRoYW4gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuICAgICAgICAgIC1JbmYgLTAuMTY0Mjc3NTgxN1xuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNC45OTcxNTkwOTEgICAgICAgICAgIDUuNDEyMzIyMjc1IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Comm_1 by BIL$Utah
-t = -2.7271715, df = 478.23345, p-value = 0.006622801
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -2.7271715, df = 478.23345, p-value = 0.003311401
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.7142897463 -0.1160366217
+          -Inf -0.1642775817
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           4.997159091           5.412322275 </code></pre>
@@ -2729,19 +2732,19 @@ tapply(BIL$Comm_1, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 1.860518844 1.677764899 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRDb21tXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKSJdfQ== -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Comm_1~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkQ29tbV8xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJncmVhdGVyXCIpIl19 -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Comm_1~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRDb21tXzEgYnkgQklMJFV0YWhcbkYgPSAxLjIyOTcxOTIsIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjA5OTI2MDUyXG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuOTYxNDQ2NjUxOCAxLjU2MTEzMTEwODZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4yMjk3MTkxNTQgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRDb21tXzEgYnkgQklMJFV0YWhcbkYgPSAxLjIyOTcxOTIsIG51bSBkZiA9IDM1MSwgZGVub20gZGYgPSAyMTAsIHAtdmFsdWUgPSAwLjA0OTYzMDI2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBncmVhdGVyIHRoYW4gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuMDAwNDUyOTM3ICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMjI5NzE5MTU0IFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Comm_1 by BIL$Utah
-F = 1.2297192, num df = 351, denom df = 210, p-value = 0.09926052
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.2297192, num df = 351, denom df = 210, p-value = 0.04963026
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.9614466518 1.5611311086
+ 1.000452937         Inf
 sample estimates:
 ratio of variances 
        1.229719154 </code></pre>
@@ -2773,19 +2776,19 @@ tapply(BIL$Healthcare, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 7.092803030 7.309862334 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRIZWFsdGhjYXJlfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Healthcare~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkSGVhbHRoY2FyZX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwibGVzc1wiKSJdfQ== -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Healthcare~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSGVhbHRoY2FyZSBieSBCSUwkVXRhaFxudCA9IC0xLjAwNTIwMjEsIGRmID0gNDY0LjU0MTI3LCBwLXZhbHVlID0gMC4zMTUzMjI5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIG5vdCBlcXVhbCB0byAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gLTAuNjQxMzkxNjIxMyAgMC4yMDcyNzMwMTQ3XG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICA3LjA5MjgwMzAzMCAgICAgICAgICAgNy4zMDk4NjIzMzQgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkSGVhbHRoY2FyZSBieSBCSUwkVXRhaFxudCA9IC0xLjAwNTIwMjEsIGRmID0gNDY0LjU0MTI3LCBwLXZhbHVlID0gMC4xNTc2NjE0XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIGxlc3MgdGhhbiAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gICAgICAgICAtSW5mIDAuMTM4ODMzNTI1MVxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNy4wOTI4MDMwMzAgICAgICAgICAgIDcuMzA5ODYyMzM0IFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Healthcare by BIL$Utah
-t = -1.0052021, df = 464.54127, p-value = 0.3153229
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -1.0052021, df = 464.54127, p-value = 0.1576614
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.6413916213  0.2072730147
+         -Inf 0.1388335251
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           7.092803030           7.309862334 </code></pre>
@@ -2798,19 +2801,19 @@ tapply(BIL$Healthcare, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 2.578697925 2.419204602 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRIZWFsdGhjYXJlfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Healthcare~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkSGVhbHRoY2FyZX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwiZ3JlYXRlclwiKSJdfQ== -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Healthcare~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRIZWFsdGhjYXJlIGJ5IEJJTCRVdGFoXG5GID0gMS4xMzYyMDI1LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4zMDg3NDQ1XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuODg4MzMxMzYzNSAxLjQ0MjQxMTUxOTlcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4xMzYyMDI1MDMgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRIZWFsdGhjYXJlIGJ5IEJJTCRVdGFoXG5GID0gMS4xMzYyMDI1LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4xNTQzNzIzXG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBncmVhdGVyIHRoYW4gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDAuOTI0MzcxMzMxNSAgICAgICAgICBJbmZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5yYXRpbyBvZiB2YXJpYW5jZXMgXG4gICAgICAgMS4xMzYyMDI1MDMgXG4ifQ== -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Healthcare by BIL$Utah
-F = 1.1362025, num df = 351, denom df = 210, p-value = 0.3087445
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1362025, num df = 351, denom df = 210, p-value = 0.1543723
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8883313635 1.4424115199
+ 0.9243713315          Inf
 sample estimates:
 ratio of variances 
        1.136202503 </code></pre>
@@ -2842,19 +2845,19 @@ tapply(BIL$Respect, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 7.664366883 8.171970210 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRSZXNwZWN0fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Respect~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkUmVzcGVjdH5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwibGVzc1wiKSJdfQ== -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Respect~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkUmVzcGVjdCBieSBCSUwkVXRhaFxudCA9IC0zLjQyMjY5NDksIGRmID0gNTIyLjEwNjA5LCBwLXZhbHVlID0gMC4wMDA2Njg3MDM5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIG5vdCBlcXVhbCB0byAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gLTAuNzk4OTUxNDkwOCAtMC4yMTYyNTUxNjI4XG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBpbiBncm91cCBOb3RVdGFoICAgIG1lYW4gaW4gZ3JvdXAgVXRhaCBcbiAgICAgICAgICA3LjY2NDM2Njg4MyAgICAgICAgICAgOC4xNzE5NzAyMTAgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkUmVzcGVjdCBieSBCSUwkVXRhaFxudCA9IC0zLjQyMjY5NDksIGRmID0gNTIyLjEwNjA5LCBwLXZhbHVlID0gMC4wMDAzMzQzNTJcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgICAtSW5mIC0wLjI2MzIyOTQzODdcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDcuNjY0MzY2ODgzICAgICAgICAgICA4LjE3MTk3MDIxMCBcbiJ9 -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Respect by BIL$Utah
-t = -3.4226949, df = 522.10609, p-value = 0.0006687039
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -3.4226949, df = 522.10609, p-value = 0.000334352
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.7989514908 -0.2162551628
+          -Inf -0.2632294387
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           7.664366883           8.171970210 </code></pre>
@@ -2867,19 +2870,19 @@ tapply(BIL$Respect, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 1.954820073 1.533036593 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRSZXNwZWN0fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Respect~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkUmVzcGVjdH5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwiZ3JlYXRlclwiKSJdfQ== -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Respect~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRSZXNwZWN0IGJ5IEJJTCRVdGFoXG5GID0gMS42MjU5NTUxLCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMDAxMjc2OTgzXG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIHJhdGlvIG9mIHZhcmlhbmNlcyBpcyBub3QgZXF1YWwgdG8gMVxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDEuMjcxMjQwNzA2IDIuMDY0MTUzNDM5XG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuNjI1OTU1MDU2IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRSZXNwZWN0IGJ5IEJJTCRVdGFoXG5GID0gMS42MjU5NTUxLCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMDAwNjM4NDkxNFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjMyMjgxNTQ2MyAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjYyNTk1NTA1NiBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Respect by BIL$Utah
-F = 1.6259551, num df = 351, denom df = 210, p-value = 0.0001276983
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.6259551, num df = 351, denom df = 210, p-value = 0.00006384914
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.271240706 2.064153439
+ 1.322815463         Inf
 sample estimates:
 ratio of variances 
        1.625955056 </code></pre>
@@ -2911,19 +2914,19 @@ tapply(BIL$EmpatheticLeader, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 7.258116883 7.794177387 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRFbXBhdGhldGljTGVhZGVyfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$EmpatheticLeader~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkRW1wYXRoZXRpY0xlYWRlcn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwibGVzc1wiKSJdfQ== -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$EmpatheticLeader~BIL$Utah, mu = 0, alternative = &quot;less&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkRW1wYXRoZXRpY0xlYWRlciBieSBCSUwkVXRhaFxudCA9IC0yLjk4ODcyNzgsIGRmID0gNDg4LjU2Mzg2LCBwLXZhbHVlID0gMC4wMDI5NDI1MDlcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbm90IGVxdWFsIHRvIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMC44ODg0NzQxNjg3IC0wLjE4MzY0NjgzODJcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDcuMjU4MTE2ODgzICAgICAgICAgICA3Ljc5NDE3NzM4NyBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkRW1wYXRoZXRpY0xlYWRlciBieSBCSUwkVXRhaFxudCA9IC0yLjk4ODcyNzgsIGRmID0gNDg4LjU2Mzg2LCBwLXZhbHVlID0gMC4wMDE0NzEyNTVcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgZGlmZmVyZW5jZSBpbiBtZWFucyBiZXR3ZWVuIGdyb3VwIE5vdFV0YWggYW5kIGdyb3VwIFV0YWggaXMgbGVzcyB0aGFuIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAgICAgICAgICAtSW5mIC0wLjI0MDQ3NzgyOTNcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIGluIGdyb3VwIE5vdFV0YWggICAgbWVhbiBpbiBncm91cCBVdGFoIFxuICAgICAgICAgIDcuMjU4MTE2ODgzICAgICAgICAgICA3Ljc5NDE3NzM4NyBcbiJ9 -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$EmpatheticLeader by BIL$Utah
-t = -2.9887278, df = 488.56386, p-value = 0.002942509
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = -2.9887278, df = 488.56386, p-value = 0.001471255
+alternative hypothesis: true difference in means between group NotUtah and group Utah is less than 0
 95 percent confidence interval:
- -0.8884741687 -0.1836468382
+          -Inf -0.2404778293
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           7.258116883           7.794177387 </code></pre>
@@ -2936,19 +2939,19 @@ tapply(BIL$EmpatheticLeader, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 2.230442631 1.950854127 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRFbXBhdGhldGljTGVhZGVyfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiXX0= -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$EmpatheticLeader~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkRW1wYXRoZXRpY0xlYWRlcn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwiZ3JlYXRlclwiKSJdfQ== -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$EmpatheticLeader~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRFbXBhdGhldGljTGVhZGVyIGJ5IEJJTCRVdGFoXG5GID0gMS4zMDcxNzE0LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMzMwMjEwNlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjAyMjAwMjA2OSAxLjY1OTQ1Njg0MVxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjMwNzE3MTM1MiBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRFbXBhdGhldGljTGVhZGVyIGJ5IEJJTCRVdGFoXG5GID0gMS4zMDcxNzE0LCBudW0gZGYgPSAzNTEsIGRlbm9tIGRmID0gMjEwLCBwLXZhbHVlID0gMC4wMTY1MTA1M1xuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAxLjA2MzQ2NTExMyAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbnJhdGlvIG9mIHZhcmlhbmNlcyBcbiAgICAgICAxLjMwNzE3MTM1MiBcbiJ9 -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$EmpatheticLeader by BIL$Utah
-F = 1.3071714, num df = 351, denom df = 210, p-value = 0.03302106
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.3071714, num df = 351, denom df = 210, p-value = 0.01651053
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 1.022002069 1.659456841
+ 1.063465113         Inf
 sample estimates:
 ratio of variances 
        1.307171352 </code></pre>
@@ -2980,19 +2983,19 @@ tapply(BIL$Turnover, BIL$Utah, mean, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 5.481331169 4.297901151 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IiwidC50ZXN0KEJJTCRUdXJub3Zlcn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of means test
-t.test(BIL$Turnover~BIL$Utah, mu = 0, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKSIsInQudGVzdChCSUwkVHVybm92ZXJ+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of means test (one-tailed)
+t.test(BIL$Turnover~BIL$Utah, mu = 0, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkVHVybm92ZXIgYnkgQklMJFV0YWhcbnQgPSA1LjAxMzcyMzUsIGRmID0gNDYxLjYyNzkxLCBwLXZhbHVlID0gMC4wMDAwMDA3NjI0MzY0XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIG5vdCBlcXVhbCB0byAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC43MTk1ODc2MzAxIDEuNjQ3MjcyNDA1Nlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNS40ODEzMzExNjkgICAgICAgICAgIDQuMjk3OTAxMTUxIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBCSUwkVHVybm92ZXIgYnkgQklMJFV0YWhcbnQgPSA1LjAxMzcyMzUsIGRmID0gNDYxLjYyNzkxLCBwLXZhbHVlID0gMC4wMDAwMDAzODEyMTgyXG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgYmV0d2VlbiBncm91cCBOb3RVdGFoIGFuZCBncm91cCBVdGFoIGlzIGdyZWF0ZXIgdGhhbiAwXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC43OTQ0MDExMDY0ICAgICAgICAgIEluZlxuc2FtcGxlIGVzdGltYXRlczpcbm1lYW4gaW4gZ3JvdXAgTm90VXRhaCAgICBtZWFuIGluIGdyb3VwIFV0YWggXG4gICAgICAgICAgNS40ODEzMzExNjkgICAgICAgICAgIDQuMjk3OTAxMTUxIFxuIn0= -->
 <pre><code>
     Welch Two Sample t-test
 
 data:  BIL$Turnover by BIL$Utah
-t = 5.0137235, df = 461.62791, p-value = 0.0000007624364
-alternative hypothesis: true difference in means between group NotUtah and group Utah is not equal to 0
+t = 5.0137235, df = 461.62791, p-value = 0.0000003812182
+alternative hypothesis: true difference in means between group NotUtah and group Utah is greater than 0
 95 percent confidence interval:
- 0.7195876301 1.6472724056
+ 0.7944011064          Inf
 sample estimates:
 mean in group NotUtah    mean in group Utah 
           5.481331169           4.297901151 </code></pre>
@@ -3005,19 +3008,19 @@ tapply(BIL$Turnover, BIL$Utah, sd, na.rm=TRUE)</code></pre>
 <pre><code>    NotUtah        Utah 
 2.804770183 2.653315663 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCIsInZhci50ZXN0KEJJTCRUdXJub3Zlcn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIl19 -->
-<pre class="r"><code>#differences of variation test
-var.test(BIL$Turnover~BIL$Utah, ratio = 1, alternative = &quot;two.sided&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkiLCJ2YXIudGVzdChCSUwkVHVybm92ZXJ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSBcImdyZWF0ZXJcIikiXX0= -->
+<pre class="r"><code>#differences of variation test (one-tailed)
+var.test(BIL$Turnover~BIL$Utah, ratio = 1, alternative = &quot;greater&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRUdXJub3ZlciBieSBCSUwkVXRhaFxuRiA9IDEuMTE3NDIwNywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMzc2NTE3OFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgbm90IGVxdWFsIHRvIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjg3MzY0Njk3MTggMS40MTg1NjgwMTIwXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTE3NDIwNzI1IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdEYgdGVzdCB0byBjb21wYXJlIHR3byB2YXJpYW5jZXNcblxuZGF0YTogIEJJTCRUdXJub3ZlciBieSBCSUwkVXRhaFxuRiA9IDEuMTE3NDIwNywgbnVtIGRmID0gMzUxLCBkZW5vbSBkZiA9IDIxMCwgcC12YWx1ZSA9IDAuMTg4MjU4OVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHJ1ZSByYXRpbyBvZiB2YXJpYW5jZXMgaXMgZ3JlYXRlciB0aGFuIDFcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjkwOTA5MTE4NzkgICAgICAgICAgSW5mXG5zYW1wbGUgZXN0aW1hdGVzOlxucmF0aW8gb2YgdmFyaWFuY2VzIFxuICAgICAgIDEuMTE3NDIwNzI1IFxuIn0= -->
 <pre><code>
     F test to compare two variances
 
 data:  BIL$Turnover by BIL$Utah
-F = 1.1174207, num df = 351, denom df = 210, p-value = 0.3765178
-alternative hypothesis: true ratio of variances is not equal to 1
+F = 1.1174207, num df = 351, denom df = 210, p-value = 0.1882589
+alternative hypothesis: true ratio of variances is greater than 1
 95 percent confidence interval:
- 0.8736469718 1.4185680120
+ 0.9090911879          Inf
 sample estimates:
 ratio of variances 
        1.117420725 </code></pre>
@@ -3097,7 +3100,9 @@ NotUtah    Utah
 <p><strong>Proportions Female in Utah and Female not in Utah</strong>
 (prop.test is run as Female Utah first, Female Not Utah second, so a
 positive z means the Utah share is higher. z is the square root of
-X-squared, given the sign of the difference.)</p>
+X-squared, given the sign of the difference. All tests are one-tailed:
+“greater” tests Female Utah &gt; Female Not Utah and “less” tests Female
+Utah &lt; Female Not Utah.)</p>
 <p>Income above $100,000 (HighIncome)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -3113,22 +3118,22 @@ FemaleUtahHighIncome</code></pre>
   Utah     72  29 101
   Sum     189 108 297</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhIaWdoSW5jb21lLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiLCJGZW1hbGVVdGFoSGlnaEluY29tZS50ZXN0Il19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhIaWdoSW5jb21lLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJsZXNzXCIpIiwiRmVtYWxlVXRhaEhpZ2hJbmNvbWUudGVzdCJdfQ== -->
 <pre class="r"><code>FemaleUtahHighIncome.test &lt;- prop.test(x = c(FemaleUtahHighIncome[&quot;Utah&quot;,&quot;1&quot;], FemaleUtahHighIncome[&quot;NotUtah&quot;,&quot;1&quot;]),
                     n = c(FemaleUtahHighIncome[&quot;Utah&quot;,&quot;Sum&quot;], FemaleUtahHighIncome[&quot;NotUtah&quot;,&quot;Sum&quot;]),
-                    correct = F, alternative = &quot;two.sided&quot;)
+                    correct = F, alternative = &quot;less&quot;)
 FemaleUtahHighIncome.test</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMy44NzEzMTc4LCBkZiA9IDEsIHAtdmFsdWUgPSAwLjA0OTExNzk0XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0d28uc2lkZWRcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMC4yMjc3MzkxMDE4MjMgLTAuMDA0MTI1OTIxNDE0XG5zYW1wbGUgZXN0aW1hdGVzOlxuICAgICAgcHJvcCAxICAgICAgIHByb3AgMiBcbjAuMjg3MTI4NzEyOSAwLjQwMzA2MTIyNDUgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhIaWdoSW5jb21lW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaEhpZ2hJbmNvbWVbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMy44NzEzMTc4LCBkZiA9IDEsIHAtdmFsdWUgPSAwLjAyNDU1ODk3XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBsZXNzXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gLTEuMDAwMDAwMDAwMDAgLTAuMDIyMTAxNDYzMjZcbnNhbXBsZSBlc3RpbWF0ZXM6XG4gICAgICBwcm9wIDEgICAgICAgcHJvcCAyIFxuMC4yODcxMjg3MTI5IDAuNDAzMDYxMjI0NSBcbiJ9 -->
 <pre><code>
     2-sample test for equality of proportions without continuity
     correction
 
 data:  c(FemaleUtahHighIncome[&quot;Utah&quot;, &quot;1&quot;], FemaleUtahHighIncome[&quot;NotUtah&quot;, &quot;1&quot;]) out of c(FemaleUtahHighIncome[&quot;Utah&quot;, &quot;Sum&quot;], FemaleUtahHighIncome[&quot;NotUtah&quot;, &quot;Sum&quot;])
-X-squared = 3.8713178, df = 1, p-value = 0.04911794
-alternative hypothesis: two.sided
+X-squared = 3.8713178, df = 1, p-value = 0.02455897
+alternative hypothesis: less
 95 percent confidence interval:
- -0.227739101823 -0.004125921414
+ -1.00000000000 -0.02210146326
 sample estimates:
       prop 1       prop 2 
 0.2871287129 0.4030612245 </code></pre>
@@ -3158,22 +3163,22 @@ FemaleUtahCollegeDegree</code></pre>
   Utah     54  47 101
   Sum     160 137 297</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhDb2xsZWdlRGVncmVlLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiLCJGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0Il19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhDb2xsZWdlRGVncmVlLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJncmVhdGVyXCIpIiwiRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWUudGVzdCJdfQ== -->
 <pre class="r"><code>FemaleUtahCollegeDegree.test &lt;- prop.test(x = c(FemaleUtahCollegeDegree[&quot;Utah&quot;,&quot;1&quot;], FemaleUtahCollegeDegree[&quot;NotUtah&quot;,&quot;1&quot;]),
                     n = c(FemaleUtahCollegeDegree[&quot;Utah&quot;,&quot;Sum&quot;], FemaleUtahCollegeDegree[&quot;NotUtah&quot;,&quot;Sum&quot;]),
-                    correct = F, alternative = &quot;two.sided&quot;)
+                    correct = F, alternative = &quot;greater&quot;)
 FemaleUtahCollegeDegree.test</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMC4wMTAxODcyNzcsIGRmID0gMSwgcC12YWx1ZSA9IDAuOTE5NjA0NFxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHdvLnNpZGVkXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gLTAuMTEzNTQ1MzQ5MCAgMC4xMjU4NzEwNzE0XG5zYW1wbGUgZXN0aW1hdGVzOlxuICAgICAgcHJvcCAxICAgICAgIHByb3AgMiBcbjAuNDY1MzQ2NTM0NyAwLjQ1OTE4MzY3MzUgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMC4wMTAxODcyNzcsIGRmID0gMSwgcC12YWx1ZSA9IDAuNDU5ODAyMlxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogZ3JlYXRlclxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjA5NDI5OTQzNTczICAxLjAwMDAwMDAwMDAwXG5zYW1wbGUgZXN0aW1hdGVzOlxuICAgICAgcHJvcCAxICAgICAgIHByb3AgMiBcbjAuNDY1MzQ2NTM0NyAwLjQ1OTE4MzY3MzUgXG4ifQ== -->
 <pre><code>
     2-sample test for equality of proportions without continuity
     correction
 
 data:  c(FemaleUtahCollegeDegree[&quot;Utah&quot;, &quot;1&quot;], FemaleUtahCollegeDegree[&quot;NotUtah&quot;, &quot;1&quot;]) out of c(FemaleUtahCollegeDegree[&quot;Utah&quot;, &quot;Sum&quot;], FemaleUtahCollegeDegree[&quot;NotUtah&quot;, &quot;Sum&quot;])
-X-squared = 0.010187277, df = 1, p-value = 0.9196044
-alternative hypothesis: two.sided
+X-squared = 0.010187277, df = 1, p-value = 0.4598022
+alternative hypothesis: greater
 95 percent confidence interval:
- -0.1135453490  0.1258710714
+ -0.09429943573  1.00000000000
 sample estimates:
       prop 1       prop 2 
 0.4653465347 0.4591836735 </code></pre>
@@ -3203,22 +3208,22 @@ FemaleUtahSAL</code></pre>
   Utah     20  81 101
   Sum      82 215 297</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhTQUwudGVzdCA8LSBwcm9wLnRlc3QoeCA9IGMoRmVtYWxlVXRhaFNBTFtcIlV0YWhcIixcIjFcIl0sIEZlbWFsZVV0YWhTQUxbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaFNBTFtcIlV0YWhcIixcIlN1bVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIixcIlN1bVwiXSksXG4gICAgICAgICAgICAgICAgICAgIGNvcnJlY3QgPSBGLCBhbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpIiwiRmVtYWxlVXRhaFNBTC50ZXN0Il19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhTQUwudGVzdCA8LSBwcm9wLnRlc3QoeCA9IGMoRmVtYWxlVXRhaFNBTFtcIlV0YWhcIixcIjFcIl0sIEZlbWFsZVV0YWhTQUxbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaFNBTFtcIlV0YWhcIixcIlN1bVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIixcIlN1bVwiXSksXG4gICAgICAgICAgICAgICAgICAgIGNvcnJlY3QgPSBGLCBhbHRlcm5hdGl2ZSA9IFwibGVzc1wiKSIsIkZlbWFsZVV0YWhTQUwudGVzdCJdfQ== -->
 <pre class="r"><code>FemaleUtahSAL.test &lt;- prop.test(x = c(FemaleUtahSAL[&quot;Utah&quot;,&quot;1&quot;], FemaleUtahSAL[&quot;NotUtah&quot;,&quot;1&quot;]),
                     n = c(FemaleUtahSAL[&quot;Utah&quot;,&quot;Sum&quot;], FemaleUtahSAL[&quot;NotUtah&quot;,&quot;Sum&quot;]),
-                    correct = F, alternative = &quot;two.sided&quot;)
+                    correct = F, alternative = &quot;less&quot;)
 FemaleUtahSAL.test</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhTQUxbXCJVdGFoXCIsIFwiMVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIiwgXCIxXCJdKSBvdXQgb2YgYyhGZW1hbGVVdGFoU0FMW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIiwgXCJTdW1cIl0pXG5YLXNxdWFyZWQgPSA0LjY2NzY3MzUsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDMwNzM1NTRcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHR3by5zaWRlZFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjIxOTY5MDk1MTgyIC0wLjAxNjkyMjUwNTQ0XG5zYW1wbGUgZXN0aW1hdGVzOlxuICAgICAgcHJvcCAxICAgICAgIHByb3AgMiBcbjAuMTk4MDE5ODAyMCAwLjMxNjMyNjUzMDYgXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhTQUxbXCJVdGFoXCIsIFwiMVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIiwgXCIxXCJdKSBvdXQgb2YgYyhGZW1hbGVVdGFoU0FMW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaFNBTFtcIk5vdFV0YWhcIiwgXCJTdW1cIl0pXG5YLXNxdWFyZWQgPSA0LjY2NzY3MzUsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDE1MzY3NzdcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IGxlc3Ncbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMS4wMDAwMDAwMDAwMCAtMC4wMzMyMjI0MDYzOVxuc2FtcGxlIGVzdGltYXRlczpcbiAgICAgIHByb3AgMSAgICAgICBwcm9wIDIgXG4wLjE5ODAxOTgwMjAgMC4zMTYzMjY1MzA2IFxuIn0= -->
 <pre><code>
     2-sample test for equality of proportions without continuity
     correction
 
 data:  c(FemaleUtahSAL[&quot;Utah&quot;, &quot;1&quot;], FemaleUtahSAL[&quot;NotUtah&quot;, &quot;1&quot;]) out of c(FemaleUtahSAL[&quot;Utah&quot;, &quot;Sum&quot;], FemaleUtahSAL[&quot;NotUtah&quot;, &quot;Sum&quot;])
-X-squared = 4.6676735, df = 1, p-value = 0.03073554
-alternative hypothesis: two.sided
+X-squared = 4.6676735, df = 1, p-value = 0.01536777
+alternative hypothesis: less
 95 percent confidence interval:
- -0.21969095182 -0.01692250544
+ -1.00000000000 -0.03322240639
 sample estimates:
       prop 1       prop 2 
 0.1980198020 0.3163265306 </code></pre>
@@ -3248,22 +3253,22 @@ FemaleUtahOrgYearsMoreThanTen</code></pre>
   Utah     86  15 101
   Sum     237  60 297</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiLCJGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbi50ZXN0Il19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJsZXNzXCIpIiwiRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4udGVzdCJdfQ== -->
 <pre class="r"><code>FemaleUtahOrgYearsMoreThanTen.test &lt;- prop.test(x = c(FemaleUtahOrgYearsMoreThanTen[&quot;Utah&quot;,&quot;1&quot;], FemaleUtahOrgYearsMoreThanTen[&quot;NotUtah&quot;,&quot;1&quot;]),
                     n = c(FemaleUtahOrgYearsMoreThanTen[&quot;Utah&quot;,&quot;Sum&quot;], FemaleUtahOrgYearsMoreThanTen[&quot;NotUtah&quot;,&quot;Sum&quot;]),
-                    correct = F, alternative = &quot;two.sided&quot;)
+                    correct = F, alternative = &quot;less&quot;)
 FemaleUtahOrgYearsMoreThanTen.test</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMi43MTc4NzUsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDk5MjMwMDRcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHR3by5zaWRlZFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjE3MjA1MTk4ODUwNyAgMC4wMDk4OTgwMTgwMDhcbnNhbXBsZSBlc3RpbWF0ZXM6XG4gICAgICBwcm9wIDEgICAgICAgcHJvcCAyIFxuMC4xNDg1MTQ4NTE1IDAuMjI5NTkxODM2NyBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gMi43MTc4NzUsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDQ5NjE1MDJcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IGxlc3Ncbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAtMS4wMDAwMDAwMDAwMDAgLTAuMDA0NzI4MzU1NzU5XG5zYW1wbGUgZXN0aW1hdGVzOlxuICAgICAgcHJvcCAxICAgICAgIHByb3AgMiBcbjAuMTQ4NTE0ODUxNSAwLjIyOTU5MTgzNjcgXG4ifQ== -->
 <pre><code>
     2-sample test for equality of proportions without continuity
     correction
 
 data:  c(FemaleUtahOrgYearsMoreThanTen[&quot;Utah&quot;, &quot;1&quot;], FemaleUtahOrgYearsMoreThanTen[&quot;NotUtah&quot;, &quot;1&quot;]) out of c(FemaleUtahOrgYearsMoreThanTen[&quot;Utah&quot;, &quot;Sum&quot;], FemaleUtahOrgYearsMoreThanTen[&quot;NotUtah&quot;, &quot;Sum&quot;])
-X-squared = 2.717875, df = 1, p-value = 0.09923004
-alternative hypothesis: two.sided
+X-squared = 2.717875, df = 1, p-value = 0.04961502
+alternative hypothesis: less
 95 percent confidence interval:
- -0.172051988507  0.009898018008
+ -1.000000000000 -0.004728355759
 sample estimates:
       prop 1       prop 2 
 0.1485148515 0.2295918367 </code></pre>
@@ -3293,22 +3298,22 @@ FemaleUtahMarried</code></pre>
   Utah     39  62 101
   Sum     141 156 297</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhNYXJyaWVkLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaE1hcnJpZWRbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaE1hcnJpZWRbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhNYXJyaWVkW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJ0d28uc2lkZWRcIikiLCJGZW1hbGVVdGFoTWFycmllZC50ZXN0Il19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIkZlbWFsZVV0YWhNYXJyaWVkLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLFwiMVwiXSwgRmVtYWxlVXRhaE1hcnJpZWRbXCJOb3RVdGFoXCIsXCIxXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaE1hcnJpZWRbXCJVdGFoXCIsXCJTdW1cIl0sIEZlbWFsZVV0YWhNYXJyaWVkW1wiTm90VXRhaFwiLFwiU3VtXCJdKSxcbiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gXCJncmVhdGVyXCIpIiwiRmVtYWxlVXRhaE1hcnJpZWQudGVzdCJdfQ== -->
 <pre class="r"><code>FemaleUtahMarried.test &lt;- prop.test(x = c(FemaleUtahMarried[&quot;Utah&quot;,&quot;1&quot;], FemaleUtahMarried[&quot;NotUtah&quot;,&quot;1&quot;]),
                     n = c(FemaleUtahMarried[&quot;Utah&quot;,&quot;Sum&quot;], FemaleUtahMarried[&quot;NotUtah&quot;,&quot;Sum&quot;]),
-                    correct = F, alternative = &quot;two.sided&quot;)
+                    correct = F, alternative = &quot;greater&quot;)
 FemaleUtahMarried.test</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhNYXJyaWVkW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaE1hcnJpZWRbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gNC44MTg4NzA0LCBkZiA9IDEsIHAtdmFsdWUgPSAwLjAyODE0OTc5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0d28uc2lkZWRcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAwLjAxNjM0MTA2ODM2IDAuMjUyMTk4MDMwNDVcbnNhbXBsZSBlc3RpbWF0ZXM6XG4gICAgICBwcm9wIDEgICAgICAgcHJvcCAyIFxuMC42MTM4NjEzODYxIDAuNDc5NTkxODM2NyBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGhvdXQgY29udGludWl0eVxuXHRjb3JyZWN0aW9uXG5cbmRhdGE6ICBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLCBcIjFcIl0sIEZlbWFsZVV0YWhNYXJyaWVkW1wiTm90VXRhaFwiLCBcIjFcIl0pIG91dCBvZiBjKEZlbWFsZVV0YWhNYXJyaWVkW1wiVXRhaFwiLCBcIlN1bVwiXSwgRmVtYWxlVXRhaE1hcnJpZWRbXCJOb3RVdGFoXCIsIFwiU3VtXCJdKVxuWC1zcXVhcmVkID0gNC44MTg4NzA0LCBkZiA9IDEsIHAtdmFsdWUgPSAwLjAxNDA3NDg5XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBncmVhdGVyXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC4wMzUzMDA4NDgzIDEuMDAwMDAwMDAwMFxuc2FtcGxlIGVzdGltYXRlczpcbiAgICAgIHByb3AgMSAgICAgICBwcm9wIDIgXG4wLjYxMzg2MTM4NjEgMC40Nzk1OTE4MzY3IFxuIn0= -->
 <pre><code>
     2-sample test for equality of proportions without continuity
     correction
 
 data:  c(FemaleUtahMarried[&quot;Utah&quot;, &quot;1&quot;], FemaleUtahMarried[&quot;NotUtah&quot;, &quot;1&quot;]) out of c(FemaleUtahMarried[&quot;Utah&quot;, &quot;Sum&quot;], FemaleUtahMarried[&quot;NotUtah&quot;, &quot;Sum&quot;])
-X-squared = 4.8188704, df = 1, p-value = 0.02814979
-alternative hypothesis: two.sided
+X-squared = 4.8188704, df = 1, p-value = 0.01407489
+alternative hypothesis: greater
 95 percent confidence interval:
- 0.01634106836 0.25219803045
+ 0.0353008483 1.0000000000
 sample estimates:
       prop 1       prop 2 
 0.6138613861 0.4795918367 </code></pre>
@@ -3323,7 +3328,7 @@ sign(FemaleUtahMarried.test$estimate[1] - FemaleUtahMarried.test$estimate[2]) * 
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTUdNVCAzMzQ1IFVuaXQgMiBQcm9qZWN0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpSdW4gdGhlIGZvbGxvd2luZyBSIENodW5rIHRvIGVuc3VyZSB5b3UgaGF2ZSBlbm91Z2ggZGVjaW1hbCBwbGFjZXMgZm9yIHJvdW5kaW5nIGFuZCB0aGF0IHZhbHVlcyBhcmUgbm90IGluIHNjaWVudGlmaWMgbm90YXRpb24uCmBgYHtyfQpvcHRpb25zKGRpZ2l0cz0xMCkKb3B0aW9ucyhzY2lwZW49OTk5KQpgYGAKCkxvYWQgdGhlIHBhY2thZ2VzIGFuZCB0aGUgQklMIGRhdGEgc2V0ICgxc3Qgd29ya3NoZWV0IG9mIEJJTC54bHN4KS4KYGBge3J9CiMgaW5zdGFsbC5wYWNrYWdlcyhjKCJyZWFkeGwiLCAiZXBpRGlzcGxheSIpKSAjIHJ1biBvbmNlIGlmIG5vdCBhbHJlYWR5IGluc3RhbGxlZApsaWJyYXJ5KHJlYWR4bCkKbGlicmFyeShlcGlEaXNwbGF5KQpCSUwgPC0gcmVhZF9leGNlbCgiZGF0YS9CSUwueGxzeCIsIHNoZWV0ID0gIkJJTCIpCmRpbShCSUwpCmBgYAoKCgoqKkRlc2NyaXB0aXZlIFN0YXRpc3RpY3MqKgpMb2FkIGVwaURpc3BsYXkgcGFja2FnZSBmb3IgdGhlIHRhYjEgZnVuY3Rpb24uCmBgYHtyfQp0YWIxKEJJTCRHZW5kZXJDYXRlZ29yaWNhbCwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkUmFjZUNhdGVnb3JpY2FsLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRFdGhuaWNpdHlDYXRlZ29yaWNhbCwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkRWR1YywgZ3JhcGggPSBGQUxTRSkgICMgMSA9IGxlc3MgdGhhbiBIUyAuLi4gNiA9IGRvY3RvcmF0ZSAoa2VlcHMgdGhlIGxldmVscyBpbiBvcmRlcikKdGFiMShCSUwkTWFyaXRhbCwgZ3JhcGggPSBGQUxTRSkgICMgMSA9IG1hcnJpZWQvY29oYWJpdGF0aW5nLCAyID0gc2luZ2xlLCA4ID0gcHJlZmVyIG5vdCB0byBzYXkKdGFiMShCSUwkVXRhaCwgZ3JhcGggPSBGQUxTRSkKYGBgCgoKCkF2ZXJhZ2Ugc2FsYXJ5IChJbmNvbWVfMSwgaW4gJDEwMDAncykKYGBge3J9Cm1lYW4oQklMJEluY29tZV8xLCBuYS5ybT1UUlVFKQpzZChCSUwkSW5jb21lXzEsIG5hLnJtPVRSVUUpCmBgYAoKCgpGZW1hbGUvTWFsZSAoR2VuZGVyKQoqKlV0YWgvTm90VXRhaCAoVXRhaCkqKiAgPC0gbXkgY29tcGFyaXNvbiBncm91cCAobGFzdCBuYW1lIEYgdGhyb3VnaCBQKQpXaGl0ZS9ub25XaGl0ZSAoV2hpdGUpCgpOb3RlOiBSIG9yZGVycyB0aGUgZ3JvdXBzIGFscGhhYmV0aWNhbGx5LCBzbyBpbiBldmVyeSB0LnRlc3QgYW5kIHZhci50ZXN0IGJlbG93IGdyb3VwIDEgPSBOb3RVdGFoIGFuZCBncm91cCAyID0gVXRhaC4KdCA9IChtZWFuIE5vdFV0YWggLSBtZWFuIFV0YWgpIC8gU0UgYW5kIEYgPSB2YXIoTm90VXRhaCkgLyB2YXIoVXRhaCkuCgoKKipEaWZmZXJlbmNlcyBOb3QgVXRhaC9VdGFoIEludHJpbnNpYyBSZXdhcmRzIChVdGFoKSoqCgpJbnRlcmVzdGluZyBKb2IgKEpvYkNoYXJhY3RlcmlzdGljc180KQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0CnQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzR+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QKdmFyLnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc180fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCmBgYAoKSm9iIGF1dG9ub215IChKb2JDaGFyYWN0ZXJpc3RpY3NfNSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdAp0LnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc181fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKCkhlbHAgT3RoZXJzIChKb2JDaGFyYWN0ZXJpc3RpY3NfNikKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdAp0LnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc182fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNiwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKCkpvYiB1c2VmdWwgdG8gc29jaWV0eSAoSm9iQ2hhcmFjdGVyaXN0aWNzXzcpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfN35CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdAp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzd+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpKb2Igc2F0aXNmYWN0aW9uIChKb2JTYXQpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iU2F0LCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEpvYlNhdCwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JTYXQsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRKb2JTYXR+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYlNhdCwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRKb2JTYXR+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgoKKipEaWZmZXJlbmNlcyBOb3QgVXRhaC9VdGFoIEV4dHJpbnNpYyBSZXdhcmRzIChVdGFoKSoqCgpJbmNvbWUgaW4gJDEwMDAncyAoSW5jb21lXzEpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSW5jb21lXzEsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSW5jb21lXzEsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSW5jb21lXzEsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRJbmNvbWVfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSW5jb21lXzEsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdAp2YXIudGVzdChCSUwkSW5jb21lXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpQZXJjZXB0aW9uIG9mIEluY29tZSAoSm9iQ2hhcmFjdGVyaXN0aWNzXzIpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdAp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzJ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpKb2Igc2VjdXJpdHkgKEpvYkNoYXJhY3RlcmlzdGljc18xKQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEpvYkNoYXJhY3RlcmlzdGljc18xLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEpvYkNoYXJhY3RlcmlzdGljc18xLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc18xLCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0CnQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc18xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QKdmFyLnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc18xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCmBgYAoKUHJvbW90aW9uYWwgb3Bwb3J0dW5pdGllcyAoSm9iQ2hhcmFjdGVyaXN0aWNzXzMpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfM35CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzMsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdAp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzN+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgoKKipEaWZmZXJlbmNlcyBOb3QgVXRhaC9VdGFoIFdvcmsgUXVhbGl0eSAoVXRhaCkqKgoKSm9iIGVuZ2FnZW1lbnQgKEVuZ18xKQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEVuZ18xLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEVuZ18xLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEVuZ18xLCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0CnQudGVzdChCSUwkRW5nXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEVuZ18xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QKdmFyLnRlc3QoQklMJEVuZ18xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCmBgYAoKTWVhbmluZ2Z1bCBjYXJlZXIgKE1XX1BNXzEpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkTVdfUE1fMSwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRNV19QTV8xLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJE1XX1BNXzEsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRNV19QTV8xfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRNV19QTV8xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QKdmFyLnRlc3QoQklMJE1XX1BNXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpPcmdhbml6YXRpb25hbCBjb21taXRtZW50IChDb21tXzEpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkQ29tbV8xLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJENvbW1fMSwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRDb21tXzEsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRDb21tXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJENvbW1fMSwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRDb21tXzF+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpTdHVkZW50J3MgQ2hvaWNlIDE6IEdvb2QgaGVhbHRoY2FyZSAoSGVhbHRoY2FyZSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRIZWFsdGhjYXJlLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEhlYWx0aGNhcmUsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSGVhbHRoY2FyZSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdAp0LnRlc3QoQklMJEhlYWx0aGNhcmV+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEhlYWx0aGNhcmUsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdAp2YXIudGVzdChCSUwkSGVhbHRoY2FyZX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKClN0dWRlbnQncyBDaG9pY2UgMjogUmVzcGVjdGVkIGF0IHdvcmsgKFJlc3BlY3QpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkUmVzcGVjdCwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRSZXNwZWN0LCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJFJlc3BlY3QsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QKdC50ZXN0KEJJTCRSZXNwZWN0fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRSZXNwZWN0LCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QKdmFyLnRlc3QoQklMJFJlc3BlY3R+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgpTdHVkZW50J3MgQ2hvaWNlIDM6IEVtcGF0aGV0aWMgbGVhZGVyIChFbXBhdGhldGljTGVhZGVyKQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEVtcGF0aGV0aWNMZWFkZXIsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkRW1wYXRoZXRpY0xlYWRlciwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRFbXBhdGhldGljTGVhZGVyLCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0CnQudGVzdChCSUwkRW1wYXRoZXRpY0xlYWRlcn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkRW1wYXRoZXRpY0xlYWRlciwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRFbXBhdGhldGljTGVhZGVyfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCmBgYAoKU3R1ZGVudCdzIENob2ljZSA0OiBUdXJub3ZlciBpbnRlbnRpb25zIChUdXJub3ZlcikKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRUdXJub3ZlciwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRUdXJub3ZlciwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRUdXJub3ZlciwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdAp0LnRlc3QoQklMJFR1cm5vdmVyfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRUdXJub3ZlciwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0CnZhci50ZXN0KEJJTCRUdXJub3Zlcn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKCgoKCioqUHJvcG9ydGlvbnMgZm9yIFdob2xlIFNhbXBsZSoqCmBgYHtyfQp0YWIxKEJJTCRIaWdoSW5jb21lLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRDb2xsZWdlRGVncmVlLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRTQUwsIGdyYXBoID0gRkFMU0UpCnRhYjEoQklMJE9yZ1llYXJzTW9yZVRoYW5UZW4sIGdyYXBoID0gRkFMU0UpCnRhYjEoQklMJE1hcnJpZWQsIGdyYXBoID0gRkFMU0UpCmBgYAoKCgoqKlN1YnNldHRpbmcgRmVtYWxlIFJlc3BvbmRlbnRzKioKYGBge3J9CiNDcmVhdGUgYSBzdWJzZXQgb2Ygb25seSBmZW1hbGUgcmVzcG9uZGVudHMKRmVtYWxlIDwtIHN1YnNldChCSUwsIEdlbmRlciA9PSAxKQp0YWJsZShGZW1hbGUkVXRhaCkKYGBgCgoKCioqUHJvcG9ydGlvbnMgRmVtYWxlIGluIFV0YWggYW5kIEZlbWFsZSBub3QgaW4gVXRhaCoqCihwcm9wLnRlc3QgaXMgcnVuIGFzIEZlbWFsZSBVdGFoIGZpcnN0LCBGZW1hbGUgTm90IFV0YWggc2Vjb25kLCBzbyBhIHBvc2l0aXZlIHogbWVhbnMgdGhlIFV0YWggc2hhcmUgaXMgaGlnaGVyLgp6IGlzIHRoZSBzcXVhcmUgcm9vdCBvZiBYLXNxdWFyZWQsIGdpdmVuIHRoZSBzaWduIG9mIHRoZSBkaWZmZXJlbmNlLikKCkluY29tZSBhYm92ZSAkMTAwLDAwMCAoSGlnaEluY29tZSkKYGBge3J9CkZlbWFsZVV0YWhIaWdoSW5jb21lIDwtIHRhYmxlKEZlbWFsZSRVdGFoLCBGZW1hbGUkSGlnaEluY29tZSkKRmVtYWxlVXRhaEhpZ2hJbmNvbWUgPC0gYWRkbWFyZ2lucyhGZW1hbGVVdGFoSGlnaEluY29tZSkKRmVtYWxlVXRhaEhpZ2hJbmNvbWUKRmVtYWxlVXRhaEhpZ2hJbmNvbWUudGVzdCA8LSBwcm9wLnRlc3QoeCA9IGMoRmVtYWxlVXRhaEhpZ2hJbmNvbWVbIlV0YWgiLCIxIl0sIEZlbWFsZVV0YWhIaWdoSW5jb21lWyJOb3RVdGFoIiwiMSJdKSwKICAgICAgICAgICAgICAgICAgICBuID0gYyhGZW1hbGVVdGFoSGlnaEluY29tZVsiVXRhaCIsIlN1bSJdLCBGZW1hbGVVdGFoSGlnaEluY29tZVsiTm90VXRhaCIsIlN1bSJdKSwKICAgICAgICAgICAgICAgICAgICBjb3JyZWN0ID0gRiwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKRmVtYWxlVXRhaEhpZ2hJbmNvbWUudGVzdAojeiBzdGF0aXN0aWMKc2lnbihGZW1hbGVVdGFoSGlnaEluY29tZS50ZXN0JGVzdGltYXRlWzFdIC0gRmVtYWxlVXRhaEhpZ2hJbmNvbWUudGVzdCRlc3RpbWF0ZVsyXSkgKiBzcXJ0KEZlbWFsZVV0YWhIaWdoSW5jb21lLnRlc3Qkc3RhdGlzdGljKQpgYGAKCkNvbGxlZ2UgRGVncmVlIChDb2xsZWdlRGVncmVlKQpgYGB7cn0KRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWUgPC0gdGFibGUoRmVtYWxlJFV0YWgsIEZlbWFsZSRDb2xsZWdlRGVncmVlKQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZSA8LSBhZGRtYXJnaW5zKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlKQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0IDwtIHByb3AudGVzdCh4ID0gYyhGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZVsiVXRhaCIsIjEiXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbIk5vdFV0YWgiLCIxIl0pLAogICAgICAgICAgICAgICAgICAgIG4gPSBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlWyJVdGFoIiwiU3VtIl0sIEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlWyJOb3RVdGFoIiwiU3VtIl0pLAogICAgICAgICAgICAgICAgICAgIGNvcnJlY3QgPSBGLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0CiN6IHN0YXRpc3RpYwpzaWduKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlLnRlc3QkZXN0aW1hdGVbMV0gLSBGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0JGVzdGltYXRlWzJdKSAqIHNxcnQoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWUudGVzdCRzdGF0aXN0aWMpCmBgYAoKSW4gU2FsZXMgb3IgQnVzaW5lc3MgRGV2ZWxvcG1lbnQgKFNBTCwgMSBZZXMsIDIgTm8pIChTQUwpCmBgYHtyfQpGZW1hbGVVdGFoU0FMIDwtIHRhYmxlKEZlbWFsZSRVdGFoLCBGZW1hbGUkU0FMKQpGZW1hbGVVdGFoU0FMIDwtIGFkZG1hcmdpbnMoRmVtYWxlVXRhaFNBTCkKRmVtYWxlVXRhaFNBTApGZW1hbGVVdGFoU0FMLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhTQUxbIlV0YWgiLCIxIl0sIEZlbWFsZVV0YWhTQUxbIk5vdFV0YWgiLCIxIl0pLAogICAgICAgICAgICAgICAgICAgIG4gPSBjKEZlbWFsZVV0YWhTQUxbIlV0YWgiLCJTdW0iXSwgRmVtYWxlVXRhaFNBTFsiTm90VXRhaCIsIlN1bSJdKSwKICAgICAgICAgICAgICAgICAgICBjb3JyZWN0ID0gRiwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKRmVtYWxlVXRhaFNBTC50ZXN0CiN6IHN0YXRpc3RpYwpzaWduKEZlbWFsZVV0YWhTQUwudGVzdCRlc3RpbWF0ZVsxXSAtIEZlbWFsZVV0YWhTQUwudGVzdCRlc3RpbWF0ZVsyXSkgKiBzcXJ0KEZlbWFsZVV0YWhTQUwudGVzdCRzdGF0aXN0aWMpCmBgYAoKTW9yZSB0aGFuIDEwIHllYXJzIGluIG9yZ2FuaXphdGlvbiAoT3JnWWVhcnNNb3JlVGhhblRlbikKYGBge3J9CkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuIDwtIHRhYmxlKEZlbWFsZSRVdGFoLCBGZW1hbGUkT3JnWWVhcnNNb3JlVGhhblRlbikKRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4gPC0gYWRkbWFyZ2lucyhGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbikKRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4KRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4udGVzdCA8LSBwcm9wLnRlc3QoeCA9IGMoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bIlV0YWgiLCIxIl0sIEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuWyJOb3RVdGFoIiwiMSJdKSwKICAgICAgICAgICAgICAgICAgICBuID0gYyhGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlblsiVXRhaCIsIlN1bSJdLCBGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlblsiTm90VXRhaCIsIlN1bSJdKSwKICAgICAgICAgICAgICAgICAgICBjb3JyZWN0ID0gRiwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4udGVzdAojeiBzdGF0aXN0aWMKc2lnbihGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbi50ZXN0JGVzdGltYXRlWzFdIC0gRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4udGVzdCRlc3RpbWF0ZVsyXSkgKiBzcXJ0KEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuLnRlc3Qkc3RhdGlzdGljKQpgYGAKClN0dWRlbnQgQ2hvaWNlOiBNYXJyaWVkIG9yIGNvaGFiaXRhdGluZyAoTWFycmllZCkKYGBge3J9CkZlbWFsZVV0YWhNYXJyaWVkIDwtIHRhYmxlKEZlbWFsZSRVdGFoLCBGZW1hbGUkTWFycmllZCkKRmVtYWxlVXRhaE1hcnJpZWQgPC0gYWRkbWFyZ2lucyhGZW1hbGVVdGFoTWFycmllZCkKRmVtYWxlVXRhaE1hcnJpZWQKRmVtYWxlVXRhaE1hcnJpZWQudGVzdCA8LSBwcm9wLnRlc3QoeCA9IGMoRmVtYWxlVXRhaE1hcnJpZWRbIlV0YWgiLCIxIl0sIEZlbWFsZVV0YWhNYXJyaWVkWyJOb3RVdGFoIiwiMSJdKSwKICAgICAgICAgICAgICAgICAgICBuID0gYyhGZW1hbGVVdGFoTWFycmllZFsiVXRhaCIsIlN1bSJdLCBGZW1hbGVVdGFoTWFycmllZFsiTm90VXRhaCIsIlN1bSJdKSwKICAgICAgICAgICAgICAgICAgICBjb3JyZWN0ID0gRiwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKRmVtYWxlVXRhaE1hcnJpZWQudGVzdAojeiBzdGF0aXN0aWMKc2lnbihGZW1hbGVVdGFoTWFycmllZC50ZXN0JGVzdGltYXRlWzFdIC0gRmVtYWxlVXRhaE1hcnJpZWQudGVzdCRlc3RpbWF0ZVsyXSkgKiBzcXJ0KEZlbWFsZVV0YWhNYXJyaWVkLnRlc3Qkc3RhdGlzdGljKQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTUdNVCAzMzQ1IFVuaXQgMiBQcm9qZWN0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpSdW4gdGhlIGZvbGxvd2luZyBSIENodW5rIHRvIGVuc3VyZSB5b3UgaGF2ZSBlbm91Z2ggZGVjaW1hbCBwbGFjZXMgZm9yIHJvdW5kaW5nIGFuZCB0aGF0IHZhbHVlcyBhcmUgbm90IGluIHNjaWVudGlmaWMgbm90YXRpb24uCmBgYHtyfQpvcHRpb25zKGRpZ2l0cz0xMCkKb3B0aW9ucyhzY2lwZW49OTk5KQpgYGAKCkxvYWQgdGhlIHBhY2thZ2VzIGFuZCB0aGUgQklMIGRhdGEgc2V0ICgxc3Qgd29ya3NoZWV0IG9mIEJJTC54bHN4KS4KYGBge3J9CiMgaW5zdGFsbC5wYWNrYWdlcyhjKCJyZWFkeGwiLCAiZXBpRGlzcGxheSIpKSAjIHJ1biBvbmNlIGlmIG5vdCBhbHJlYWR5IGluc3RhbGxlZApsaWJyYXJ5KHJlYWR4bCkKbGlicmFyeShlcGlEaXNwbGF5KQpCSUwgPC0gcmVhZF9leGNlbCgiZGF0YS9CSUwueGxzeCIsIHNoZWV0ID0gIkJJTCIpCmRpbShCSUwpCmBgYAoKCgoqKkRlc2NyaXB0aXZlIFN0YXRpc3RpY3MqKgpMb2FkIGVwaURpc3BsYXkgcGFja2FnZSBmb3IgdGhlIHRhYjEgZnVuY3Rpb24uCmBgYHtyfQp0YWIxKEJJTCRHZW5kZXJDYXRlZ29yaWNhbCwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkUmFjZUNhdGVnb3JpY2FsLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRFdGhuaWNpdHlDYXRlZ29yaWNhbCwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkRWR1YywgZ3JhcGggPSBGQUxTRSkgICMgMSA9IGxlc3MgdGhhbiBIUyAuLi4gNiA9IGRvY3RvcmF0ZSAoa2VlcHMgdGhlIGxldmVscyBpbiBvcmRlcikKdGFiMShCSUwkTWFyaXRhbCwgZ3JhcGggPSBGQUxTRSkgICMgMSA9IG1hcnJpZWQvY29oYWJpdGF0aW5nLCAyID0gc2luZ2xlLCA4ID0gcHJlZmVyIG5vdCB0byBzYXkKdGFiMShCSUwkVXRhaCwgZ3JhcGggPSBGQUxTRSkKYGBgCgoKCkF2ZXJhZ2Ugc2FsYXJ5IChJbmNvbWVfMSwgaW4gJDEwMDAncykKYGBge3J9Cm1lYW4oQklMJEluY29tZV8xLCBuYS5ybT1UUlVFKQpzZChCSUwkSW5jb21lXzEsIG5hLnJtPVRSVUUpCmBgYAoKCgpGZW1hbGUvTWFsZSAoR2VuZGVyKQoqKlV0YWgvTm90VXRhaCAoVXRhaCkqKiAgPC0gbXkgY29tcGFyaXNvbiBncm91cCAobGFzdCBuYW1lIEYgdGhyb3VnaCBQKQpXaGl0ZS9ub25XaGl0ZSAoV2hpdGUpCgpOb3RlOiBSIG9yZGVycyB0aGUgZ3JvdXBzIGFscGhhYmV0aWNhbGx5LCBzbyBpbiBldmVyeSB0LnRlc3QgYW5kIHZhci50ZXN0IGJlbG93IGdyb3VwIDEgPSBOb3RVdGFoIGFuZCBncm91cCAyID0gVXRhaC4KdCA9IChtZWFuIE5vdFV0YWggLSBtZWFuIFV0YWgpIC8gU0UgYW5kIEYgPSB2YXIoTm90VXRhaCkgLyB2YXIoVXRhaCkuCkFsbCB0ZXN0cyBhcmUgb25lLXRhaWxlZC4gVGhlIGFsdGVybmF0aXZlIGlzIHNldCBpbiB0aGUgZGlyZWN0aW9uIG9mIHRoZSBvYnNlcnZlZCBkaWZmZXJlbmNlOgoiZ3JlYXRlciIgdGVzdHMgTm90VXRhaCA+IFV0YWggKG9yIHZhciBOb3RVdGFoID4gdmFyIFV0YWgpIGFuZCAibGVzcyIgdGVzdHMgTm90VXRhaCA8IFV0YWguCgoKKipEaWZmZXJlbmNlcyBOb3QgVXRhaC9VdGFoIEludHJpbnNpYyBSZXdhcmRzIChVdGFoKSoqCgpJbnRlcmVzdGluZyBKb2IgKEpvYkNoYXJhY3RlcmlzdGljc180KQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc180LCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc180fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gImxlc3MiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzQsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkKdmFyLnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc180fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKCkpvYiBhdXRvbm9teSAoSm9iQ2hhcmFjdGVyaXN0aWNzXzUpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzUsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzUsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzUsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QgKG9uZS10YWlsZWQpCnQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzV+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNSwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0IChvbmUtdGFpbGVkKQp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzV+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAiZ3JlYXRlciIpCmBgYAoKSGVscCBPdGhlcnMgKEpvYkNoYXJhY3RlcmlzdGljc182KQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEpvYkNoYXJhY3RlcmlzdGljc182LCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEpvYkNoYXJhY3RlcmlzdGljc182LCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc182LCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc182fkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gImxlc3MiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzYsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkKdmFyLnRlc3QoQklMJEpvYkNoYXJhY3RlcmlzdGljc182fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKCkpvYiB1c2VmdWwgdG8gc29jaWV0eSAoSm9iQ2hhcmFjdGVyaXN0aWNzXzcpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzcsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QgKG9uZS10YWlsZWQpCnQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzd+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfNywgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0IChvbmUtdGFpbGVkKQp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzd+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCmBgYAoKSm9iIHNhdGlzZmFjdGlvbiAoSm9iU2F0KQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEpvYlNhdCwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRKb2JTYXQsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iU2F0LCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJEpvYlNhdH5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJsZXNzIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYlNhdCwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0IChvbmUtdGFpbGVkKQp2YXIudGVzdChCSUwkSm9iU2F0fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKCgoqKkRpZmZlcmVuY2VzIE5vdCBVdGFoL1V0YWggRXh0cmluc2ljIFJld2FyZHMgKFV0YWgpKioKCkluY29tZSBpbiAkMTAwMCdzIChJbmNvbWVfMSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRJbmNvbWVfMSwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRJbmNvbWVfMSwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRJbmNvbWVfMSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRJbmNvbWVfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEluY29tZV8xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRJbmNvbWVfMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgpQZXJjZXB0aW9uIG9mIEluY29tZSAoSm9iQ2hhcmFjdGVyaXN0aWNzXzIpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzIsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QgKG9uZS10YWlsZWQpCnQudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzJ+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAiZ3JlYXRlciIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMiwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0IChvbmUtdGFpbGVkKQp2YXIudGVzdChCSUwkSm9iQ2hhcmFjdGVyaXN0aWNzXzJ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAiZ3JlYXRlciIpCmBgYAoKSm9iIHNlY3VyaXR5IChKb2JDaGFyYWN0ZXJpc3RpY3NfMSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMSwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMSwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMX5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJsZXNzIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc18xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgpQcm9tb3Rpb25hbCBvcHBvcnR1bml0aWVzIChKb2JDaGFyYWN0ZXJpc3RpY3NfMykKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMywgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMywgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfMywgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfM35CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEpvYkNoYXJhY3RlcmlzdGljc18zLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRKb2JDaGFyYWN0ZXJpc3RpY3NfM35CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgoKKipEaWZmZXJlbmNlcyBOb3QgVXRhaC9VdGFoIFdvcmsgUXVhbGl0eSAoVXRhaCkqKgoKSm9iIGVuZ2FnZW1lbnQgKEVuZ18xKQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJEVuZ18xLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEVuZ18xLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEVuZ18xLCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJEVuZ18xfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gImxlc3MiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkRW5nXzEsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkKdmFyLnRlc3QoQklMJEVuZ18xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKCk1lYW5pbmdmdWwgY2FyZWVyIChNV19QTV8xKQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJE1XX1BNXzEsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkTVdfUE1fMSwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRNV19QTV8xLCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJE1XX1BNXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRNV19QTV8xLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRNV19QTV8xfkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKCk9yZ2FuaXphdGlvbmFsIGNvbW1pdG1lbnQgKENvbW1fMSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRDb21tXzEsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkQ29tbV8xLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJENvbW1fMSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRDb21tXzF+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRDb21tXzEsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkKdmFyLnRlc3QoQklMJENvbW1fMX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgpTdHVkZW50J3MgQ2hvaWNlIDE6IEdvb2QgaGVhbHRoY2FyZSAoSGVhbHRoY2FyZSkKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRIZWFsdGhjYXJlLCBuYS5ybT1UUlVFKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBvZiB3aG9sZSBzYW1wbGUKc2QoQklMJEhlYWx0aGNhcmUsIG5hLnJtPVRSVUUpCgojbWVhbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSGVhbHRoY2FyZSwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRIZWFsdGhjYXJlfkJJTCRVdGFoLCBtdSA9IDAsIGFsdGVybmF0aXZlID0gImxlc3MiKQoKI3N0YW5kYXJkIGRldmlhdGlvbiBmb3IgTm90VXRhaCBhbmQgVXRhaCBzdWJzZXRzCnRhcHBseShCSUwkSGVhbHRoY2FyZSwgQklMJFV0YWgsIHNkLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIHZhcmlhdGlvbiB0ZXN0IChvbmUtdGFpbGVkKQp2YXIudGVzdChCSUwkSGVhbHRoY2FyZX5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgpTdHVkZW50J3MgQ2hvaWNlIDI6IFJlc3BlY3RlZCBhdCB3b3JrIChSZXNwZWN0KQpgYGB7cn0KI21lYW4gb2Ygd2hvbGUgc2FtcGxlCm1lYW4oQklMJFJlc3BlY3QsIG5hLnJtPVRSVUUpCgojc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHdob2xlIHNhbXBsZQpzZChCSUwkUmVzcGVjdCwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRSZXNwZWN0LCBCSUwkVXRhaCwgbWVhbiwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiBtZWFucyB0ZXN0IChvbmUtdGFpbGVkKQp0LnRlc3QoQklMJFJlc3BlY3R+QklMJFV0YWgsIG11ID0gMCwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCgojc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRSZXNwZWN0LCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRSZXNwZWN0fkJJTCRVdGFoLCByYXRpbyA9IDEsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpgYGAKClN0dWRlbnQncyBDaG9pY2UgMzogRW1wYXRoZXRpYyBsZWFkZXIgKEVtcGF0aGV0aWNMZWFkZXIpCmBgYHtyfQojbWVhbiBvZiB3aG9sZSBzYW1wbGUKbWVhbihCSUwkRW1wYXRoZXRpY0xlYWRlciwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRFbXBhdGhldGljTGVhZGVyLCBuYS5ybT1UUlVFKQoKI21lYW4gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEVtcGF0aGV0aWNMZWFkZXIsIEJJTCRVdGFoLCBtZWFuLCBuYS5ybT1UUlVFKQoKI2RpZmZlcmVuY2VzIG9mIG1lYW5zIHRlc3QgKG9uZS10YWlsZWQpCnQudGVzdChCSUwkRW1wYXRoZXRpY0xlYWRlcn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJsZXNzIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJEVtcGF0aGV0aWNMZWFkZXIsIEJJTCRVdGFoLCBzZCwgbmEucm09VFJVRSkKCiNkaWZmZXJlbmNlcyBvZiB2YXJpYXRpb24gdGVzdCAob25lLXRhaWxlZCkKdmFyLnRlc3QoQklMJEVtcGF0aGV0aWNMZWFkZXJ+QklMJFV0YWgsIHJhdGlvID0gMSwgYWx0ZXJuYXRpdmUgPSAiZ3JlYXRlciIpCmBgYAoKU3R1ZGVudCdzIENob2ljZSA0OiBUdXJub3ZlciBpbnRlbnRpb25zIChUdXJub3ZlcikKYGBge3J9CiNtZWFuIG9mIHdob2xlIHNhbXBsZQptZWFuKEJJTCRUdXJub3ZlciwgbmEucm09VFJVRSkKCiNzdGFuZGFyZCBkZXZpYXRpb24gb2Ygd2hvbGUgc2FtcGxlCnNkKEJJTCRUdXJub3ZlciwgbmEucm09VFJVRSkKCiNtZWFuIGZvciBOb3RVdGFoIGFuZCBVdGFoIHN1YnNldHMKdGFwcGx5KEJJTCRUdXJub3ZlciwgQklMJFV0YWgsIG1lYW4sIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgbWVhbnMgdGVzdCAob25lLXRhaWxlZCkKdC50ZXN0KEJJTCRUdXJub3Zlcn5CSUwkVXRhaCwgbXUgPSAwLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKCiNzdGFuZGFyZCBkZXZpYXRpb24gZm9yIE5vdFV0YWggYW5kIFV0YWggc3Vic2V0cwp0YXBwbHkoQklMJFR1cm5vdmVyLCBCSUwkVXRhaCwgc2QsIG5hLnJtPVRSVUUpCgojZGlmZmVyZW5jZXMgb2YgdmFyaWF0aW9uIHRlc3QgKG9uZS10YWlsZWQpCnZhci50ZXN0KEJJTCRUdXJub3Zlcn5CSUwkVXRhaCwgcmF0aW8gPSAxLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKYGBgCgoKCgoqKlByb3BvcnRpb25zIGZvciBXaG9sZSBTYW1wbGUqKgpgYGB7cn0KdGFiMShCSUwkSGlnaEluY29tZSwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkQ29sbGVnZURlZ3JlZSwgZ3JhcGggPSBGQUxTRSkKdGFiMShCSUwkU0FMLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRPcmdZZWFyc01vcmVUaGFuVGVuLCBncmFwaCA9IEZBTFNFKQp0YWIxKEJJTCRNYXJyaWVkLCBncmFwaCA9IEZBTFNFKQpgYGAKCgoKKipTdWJzZXR0aW5nIEZlbWFsZSBSZXNwb25kZW50cyoqCmBgYHtyfQojQ3JlYXRlIGEgc3Vic2V0IG9mIG9ubHkgZmVtYWxlIHJlc3BvbmRlbnRzCkZlbWFsZSA8LSBzdWJzZXQoQklMLCBHZW5kZXIgPT0gMSkKdGFibGUoRmVtYWxlJFV0YWgpCmBgYAoKCgoqKlByb3BvcnRpb25zIEZlbWFsZSBpbiBVdGFoIGFuZCBGZW1hbGUgbm90IGluIFV0YWgqKgoocHJvcC50ZXN0IGlzIHJ1biBhcyBGZW1hbGUgVXRhaCBmaXJzdCwgRmVtYWxlIE5vdCBVdGFoIHNlY29uZCwgc28gYSBwb3NpdGl2ZSB6IG1lYW5zIHRoZSBVdGFoIHNoYXJlIGlzIGhpZ2hlci4KeiBpcyB0aGUgc3F1YXJlIHJvb3Qgb2YgWC1zcXVhcmVkLCBnaXZlbiB0aGUgc2lnbiBvZiB0aGUgZGlmZmVyZW5jZS4KQWxsIHRlc3RzIGFyZSBvbmUtdGFpbGVkOiAiZ3JlYXRlciIgdGVzdHMgRmVtYWxlIFV0YWggPiBGZW1hbGUgTm90IFV0YWggYW5kICJsZXNzIiB0ZXN0cyBGZW1hbGUgVXRhaCA8IEZlbWFsZSBOb3QgVXRhaC4pCgpJbmNvbWUgYWJvdmUgJDEwMCwwMDAgKEhpZ2hJbmNvbWUpCmBgYHtyfQpGZW1hbGVVdGFoSGlnaEluY29tZSA8LSB0YWJsZShGZW1hbGUkVXRhaCwgRmVtYWxlJEhpZ2hJbmNvbWUpCkZlbWFsZVV0YWhIaWdoSW5jb21lIDwtIGFkZG1hcmdpbnMoRmVtYWxlVXRhaEhpZ2hJbmNvbWUpCkZlbWFsZVV0YWhIaWdoSW5jb21lCkZlbWFsZVV0YWhIaWdoSW5jb21lLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhIaWdoSW5jb21lWyJVdGFoIiwiMSJdLCBGZW1hbGVVdGFoSGlnaEluY29tZVsiTm90VXRhaCIsIjEiXSksCiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaEhpZ2hJbmNvbWVbIlV0YWgiLCJTdW0iXSwgRmVtYWxlVXRhaEhpZ2hJbmNvbWVbIk5vdFV0YWgiLCJTdW0iXSksCiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gImxlc3MiKQpGZW1hbGVVdGFoSGlnaEluY29tZS50ZXN0CiN6IHN0YXRpc3RpYwpzaWduKEZlbWFsZVV0YWhIaWdoSW5jb21lLnRlc3QkZXN0aW1hdGVbMV0gLSBGZW1hbGVVdGFoSGlnaEluY29tZS50ZXN0JGVzdGltYXRlWzJdKSAqIHNxcnQoRmVtYWxlVXRhaEhpZ2hJbmNvbWUudGVzdCRzdGF0aXN0aWMpCmBgYAoKQ29sbGVnZSBEZWdyZWUgKENvbGxlZ2VEZWdyZWUpCmBgYHtyfQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZSA8LSB0YWJsZShGZW1hbGUkVXRhaCwgRmVtYWxlJENvbGxlZ2VEZWdyZWUpCkZlbWFsZVV0YWhDb2xsZWdlRGVncmVlIDwtIGFkZG1hcmdpbnMoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWUpCkZlbWFsZVV0YWhDb2xsZWdlRGVncmVlCkZlbWFsZVV0YWhDb2xsZWdlRGVncmVlLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlWyJVdGFoIiwiMSJdLCBGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZVsiTm90VXRhaCIsIjEiXSksCiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbIlV0YWgiLCJTdW0iXSwgRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWVbIk5vdFV0YWgiLCJTdW0iXSksCiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gImdyZWF0ZXIiKQpGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0CiN6IHN0YXRpc3RpYwpzaWduKEZlbWFsZVV0YWhDb2xsZWdlRGVncmVlLnRlc3QkZXN0aW1hdGVbMV0gLSBGZW1hbGVVdGFoQ29sbGVnZURlZ3JlZS50ZXN0JGVzdGltYXRlWzJdKSAqIHNxcnQoRmVtYWxlVXRhaENvbGxlZ2VEZWdyZWUudGVzdCRzdGF0aXN0aWMpCmBgYAoKSW4gU2FsZXMgb3IgQnVzaW5lc3MgRGV2ZWxvcG1lbnQgKFNBTCwgMSBZZXMsIDIgTm8pIChTQUwpCmBgYHtyfQpGZW1hbGVVdGFoU0FMIDwtIHRhYmxlKEZlbWFsZSRVdGFoLCBGZW1hbGUkU0FMKQpGZW1hbGVVdGFoU0FMIDwtIGFkZG1hcmdpbnMoRmVtYWxlVXRhaFNBTCkKRmVtYWxlVXRhaFNBTApGZW1hbGVVdGFoU0FMLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhTQUxbIlV0YWgiLCIxIl0sIEZlbWFsZVV0YWhTQUxbIk5vdFV0YWgiLCIxIl0pLAogICAgICAgICAgICAgICAgICAgIG4gPSBjKEZlbWFsZVV0YWhTQUxbIlV0YWgiLCJTdW0iXSwgRmVtYWxlVXRhaFNBTFsiTm90VXRhaCIsIlN1bSJdKSwKICAgICAgICAgICAgICAgICAgICBjb3JyZWN0ID0gRiwgYWx0ZXJuYXRpdmUgPSAibGVzcyIpCkZlbWFsZVV0YWhTQUwudGVzdAojeiBzdGF0aXN0aWMKc2lnbihGZW1hbGVVdGFoU0FMLnRlc3QkZXN0aW1hdGVbMV0gLSBGZW1hbGVVdGFoU0FMLnRlc3QkZXN0aW1hdGVbMl0pICogc3FydChGZW1hbGVVdGFoU0FMLnRlc3Qkc3RhdGlzdGljKQpgYGAKCk1vcmUgdGhhbiAxMCB5ZWFycyBpbiBvcmdhbml6YXRpb24gKE9yZ1llYXJzTW9yZVRoYW5UZW4pCmBgYHtyfQpGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbiA8LSB0YWJsZShGZW1hbGUkVXRhaCwgRmVtYWxlJE9yZ1llYXJzTW9yZVRoYW5UZW4pCkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuIDwtIGFkZG1hcmdpbnMoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4pCkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuCkZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuLnRlc3QgPC0gcHJvcC50ZXN0KHggPSBjKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuWyJVdGFoIiwiMSJdLCBGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlblsiTm90VXRhaCIsIjEiXSksCiAgICAgICAgICAgICAgICAgICAgbiA9IGMoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bIlV0YWgiLCJTdW0iXSwgRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW5bIk5vdFV0YWgiLCJTdW0iXSksCiAgICAgICAgICAgICAgICAgICAgY29ycmVjdCA9IEYsIGFsdGVybmF0aXZlID0gImxlc3MiKQpGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbi50ZXN0CiN6IHN0YXRpc3RpYwpzaWduKEZlbWFsZVV0YWhPcmdZZWFyc01vcmVUaGFuVGVuLnRlc3QkZXN0aW1hdGVbMV0gLSBGZW1hbGVVdGFoT3JnWWVhcnNNb3JlVGhhblRlbi50ZXN0JGVzdGltYXRlWzJdKSAqIHNxcnQoRmVtYWxlVXRhaE9yZ1llYXJzTW9yZVRoYW5UZW4udGVzdCRzdGF0aXN0aWMpCmBgYAoKU3R1ZGVudCBDaG9pY2U6IE1hcnJpZWQgb3IgY29oYWJpdGF0aW5nIChNYXJyaWVkKQpgYGB7cn0KRmVtYWxlVXRhaE1hcnJpZWQgPC0gdGFibGUoRmVtYWxlJFV0YWgsIEZlbWFsZSRNYXJyaWVkKQpGZW1hbGVVdGFoTWFycmllZCA8LSBhZGRtYXJnaW5zKEZlbWFsZVV0YWhNYXJyaWVkKQpGZW1hbGVVdGFoTWFycmllZApGZW1hbGVVdGFoTWFycmllZC50ZXN0IDwtIHByb3AudGVzdCh4ID0gYyhGZW1hbGVVdGFoTWFycmllZFsiVXRhaCIsIjEiXSwgRmVtYWxlVXRhaE1hcnJpZWRbIk5vdFV0YWgiLCIxIl0pLAogICAgICAgICAgICAgICAgICAgIG4gPSBjKEZlbWFsZVV0YWhNYXJyaWVkWyJVdGFoIiwiU3VtIl0sIEZlbWFsZVV0YWhNYXJyaWVkWyJOb3RVdGFoIiwiU3VtIl0pLAogICAgICAgICAgICAgICAgICAgIGNvcnJlY3QgPSBGLCBhbHRlcm5hdGl2ZSA9ICJncmVhdGVyIikKRmVtYWxlVXRhaE1hcnJpZWQudGVzdAojeiBzdGF0aXN0aWMKc2lnbihGZW1hbGVVdGFoTWFycmllZC50ZXN0JGVzdGltYXRlWzFdIC0gRmVtYWxlVXRhaE1hcnJpZWQudGVzdCRlc3RpbWF0ZVsyXSkgKiBzcXJ0KEZlbWFsZVV0YWhNYXJyaWVkLnRlc3Qkc3RhdGlzdGljKQpgYGAK</div>
 
 
 

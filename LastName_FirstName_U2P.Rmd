@@ -47,6 +47,8 @@ White/nonWhite (White)
 
 Note: R orders the groups alphabetically, so in every t.test and var.test below group 1 = NotUtah and group 2 = Utah.
 t = (mean NotUtah - mean Utah) / SE and F = var(NotUtah) / var(Utah).
+All tests are one-tailed. The alternative is set in the direction of the observed difference:
+"greater" tests NotUtah > Utah (or var NotUtah > var Utah) and "less" tests NotUtah < Utah.
 
 
 **Differences Not Utah/Utah Intrinsic Rewards (Utah)**
@@ -62,14 +64,14 @@ sd(BIL$JobCharacteristics_4, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_4, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_4~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_4~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_4, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_4~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_4~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Job autonomy (JobCharacteristics_5)
@@ -83,14 +85,14 @@ sd(BIL$JobCharacteristics_5, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_5, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_5~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_5~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_5, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_5~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_5~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Help Others (JobCharacteristics_6)
@@ -104,14 +106,14 @@ sd(BIL$JobCharacteristics_6, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_6, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_6~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_6~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_6, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_6~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_6~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Job useful to society (JobCharacteristics_7)
@@ -125,14 +127,14 @@ sd(BIL$JobCharacteristics_7, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_7, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_7~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_7~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_7, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_7~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_7~BIL$Utah, ratio = 1, alternative = "less")
 ```
 
 Job satisfaction (JobSat)
@@ -146,14 +148,14 @@ sd(BIL$JobSat, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobSat, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobSat~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobSat~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobSat, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobSat~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobSat~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 
@@ -170,14 +172,14 @@ sd(BIL$Income_1, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Income_1, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Income_1~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Income_1~BIL$Utah, mu = 0, alternative = "greater")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Income_1, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Income_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Income_1~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Perception of Income (JobCharacteristics_2)
@@ -191,14 +193,14 @@ sd(BIL$JobCharacteristics_2, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_2, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_2~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_2~BIL$Utah, mu = 0, alternative = "greater")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_2, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_2~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_2~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Job security (JobCharacteristics_1)
@@ -212,14 +214,14 @@ sd(BIL$JobCharacteristics_1, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_1, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_1~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_1~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_1, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_1~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Promotional opportunities (JobCharacteristics_3)
@@ -233,14 +235,14 @@ sd(BIL$JobCharacteristics_3, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_3, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$JobCharacteristics_3~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$JobCharacteristics_3~BIL$Utah, mu = 0, alternative = "greater")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$JobCharacteristics_3, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$JobCharacteristics_3~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$JobCharacteristics_3~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 
@@ -257,14 +259,14 @@ sd(BIL$Eng_1, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Eng_1, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Eng_1~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Eng_1~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Eng_1, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Eng_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Eng_1~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Meaningful career (MW_PM_1)
@@ -278,14 +280,14 @@ sd(BIL$MW_PM_1, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$MW_PM_1, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$MW_PM_1~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$MW_PM_1~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$MW_PM_1, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$MW_PM_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$MW_PM_1~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Organizational commitment (Comm_1)
@@ -299,14 +301,14 @@ sd(BIL$Comm_1, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Comm_1, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Comm_1~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Comm_1~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Comm_1, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Comm_1~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Comm_1~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Student's Choice 1: Good healthcare (Healthcare)
@@ -320,14 +322,14 @@ sd(BIL$Healthcare, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Healthcare, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Healthcare~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Healthcare~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Healthcare, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Healthcare~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Healthcare~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Student's Choice 2: Respected at work (Respect)
@@ -341,14 +343,14 @@ sd(BIL$Respect, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Respect, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Respect~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Respect~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Respect, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Respect~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Respect~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Student's Choice 3: Empathetic leader (EmpatheticLeader)
@@ -362,14 +364,14 @@ sd(BIL$EmpatheticLeader, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$EmpatheticLeader, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$EmpatheticLeader~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$EmpatheticLeader~BIL$Utah, mu = 0, alternative = "less")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$EmpatheticLeader, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$EmpatheticLeader~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$EmpatheticLeader~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 Student's Choice 4: Turnover intentions (Turnover)
@@ -383,14 +385,14 @@ sd(BIL$Turnover, na.rm=TRUE)
 #mean for NotUtah and Utah subsets
 tapply(BIL$Turnover, BIL$Utah, mean, na.rm=TRUE)
 
-#differences of means test
-t.test(BIL$Turnover~BIL$Utah, mu = 0, alternative = "two.sided")
+#differences of means test (one-tailed)
+t.test(BIL$Turnover~BIL$Utah, mu = 0, alternative = "greater")
 
 #standard deviation for NotUtah and Utah subsets
 tapply(BIL$Turnover, BIL$Utah, sd, na.rm=TRUE)
 
-#differences of variation test
-var.test(BIL$Turnover~BIL$Utah, ratio = 1, alternative = "two.sided")
+#differences of variation test (one-tailed)
+var.test(BIL$Turnover~BIL$Utah, ratio = 1, alternative = "greater")
 ```
 
 
@@ -418,7 +420,8 @@ table(Female$Utah)
 
 **Proportions Female in Utah and Female not in Utah**
 (prop.test is run as Female Utah first, Female Not Utah second, so a positive z means the Utah share is higher.
-z is the square root of X-squared, given the sign of the difference.)
+z is the square root of X-squared, given the sign of the difference.
+All tests are one-tailed: "greater" tests Female Utah > Female Not Utah and "less" tests Female Utah < Female Not Utah.)
 
 Income above $100,000 (HighIncome)
 ```{r}
@@ -427,7 +430,7 @@ FemaleUtahHighIncome <- addmargins(FemaleUtahHighIncome)
 FemaleUtahHighIncome
 FemaleUtahHighIncome.test <- prop.test(x = c(FemaleUtahHighIncome["Utah","1"], FemaleUtahHighIncome["NotUtah","1"]),
                     n = c(FemaleUtahHighIncome["Utah","Sum"], FemaleUtahHighIncome["NotUtah","Sum"]),
-                    correct = F, alternative = "two.sided")
+                    correct = F, alternative = "less")
 FemaleUtahHighIncome.test
 #z statistic
 sign(FemaleUtahHighIncome.test$estimate[1] - FemaleUtahHighIncome.test$estimate[2]) * sqrt(FemaleUtahHighIncome.test$statistic)
@@ -440,7 +443,7 @@ FemaleUtahCollegeDegree <- addmargins(FemaleUtahCollegeDegree)
 FemaleUtahCollegeDegree
 FemaleUtahCollegeDegree.test <- prop.test(x = c(FemaleUtahCollegeDegree["Utah","1"], FemaleUtahCollegeDegree["NotUtah","1"]),
                     n = c(FemaleUtahCollegeDegree["Utah","Sum"], FemaleUtahCollegeDegree["NotUtah","Sum"]),
-                    correct = F, alternative = "two.sided")
+                    correct = F, alternative = "greater")
 FemaleUtahCollegeDegree.test
 #z statistic
 sign(FemaleUtahCollegeDegree.test$estimate[1] - FemaleUtahCollegeDegree.test$estimate[2]) * sqrt(FemaleUtahCollegeDegree.test$statistic)
@@ -453,7 +456,7 @@ FemaleUtahSAL <- addmargins(FemaleUtahSAL)
 FemaleUtahSAL
 FemaleUtahSAL.test <- prop.test(x = c(FemaleUtahSAL["Utah","1"], FemaleUtahSAL["NotUtah","1"]),
                     n = c(FemaleUtahSAL["Utah","Sum"], FemaleUtahSAL["NotUtah","Sum"]),
-                    correct = F, alternative = "two.sided")
+                    correct = F, alternative = "less")
 FemaleUtahSAL.test
 #z statistic
 sign(FemaleUtahSAL.test$estimate[1] - FemaleUtahSAL.test$estimate[2]) * sqrt(FemaleUtahSAL.test$statistic)
@@ -466,7 +469,7 @@ FemaleUtahOrgYearsMoreThanTen <- addmargins(FemaleUtahOrgYearsMoreThanTen)
 FemaleUtahOrgYearsMoreThanTen
 FemaleUtahOrgYearsMoreThanTen.test <- prop.test(x = c(FemaleUtahOrgYearsMoreThanTen["Utah","1"], FemaleUtahOrgYearsMoreThanTen["NotUtah","1"]),
                     n = c(FemaleUtahOrgYearsMoreThanTen["Utah","Sum"], FemaleUtahOrgYearsMoreThanTen["NotUtah","Sum"]),
-                    correct = F, alternative = "two.sided")
+                    correct = F, alternative = "less")
 FemaleUtahOrgYearsMoreThanTen.test
 #z statistic
 sign(FemaleUtahOrgYearsMoreThanTen.test$estimate[1] - FemaleUtahOrgYearsMoreThanTen.test$estimate[2]) * sqrt(FemaleUtahOrgYearsMoreThanTen.test$statistic)
@@ -479,7 +482,7 @@ FemaleUtahMarried <- addmargins(FemaleUtahMarried)
 FemaleUtahMarried
 FemaleUtahMarried.test <- prop.test(x = c(FemaleUtahMarried["Utah","1"], FemaleUtahMarried["NotUtah","1"]),
                     n = c(FemaleUtahMarried["Utah","Sum"], FemaleUtahMarried["NotUtah","Sum"]),
-                    correct = F, alternative = "two.sided")
+                    correct = F, alternative = "greater")
 FemaleUtahMarried.test
 #z statistic
 sign(FemaleUtahMarried.test$estimate[1] - FemaleUtahMarried.test$estimate[2]) * sqrt(FemaleUtahMarried.test$statistic)
